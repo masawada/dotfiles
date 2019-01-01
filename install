@@ -1,0 +1,14 @@
+set -eu
+
+if ! type git > /dev/null; then
+  echo "Error: git not found"
+  exit 1
+fi
+
+git clone git@github.com:masawada/dotfiles.git $HOME/.dotfiles
+cd $HOME/.dotfiles
+
+exec $HOME/scripts/install_mitamae
+exec $HOME/scripts/provision
+
+# vim: set ft=sh ff=unix fileencoding=utf-8 expandtab ts=2 sw=2 :
