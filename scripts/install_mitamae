@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -eu
+
+mitamae_version="1.7.0"
+
+case "$(uname)" in
+  "Linux")
+    mitamae_bin="mitamae-x86_64-linux"
+    mitamae_sha256="808f028a8de5f2ed2d52eea8c0f52f7ebc8d8e5a8960adb6906fa0b943b1e3da"
+    ;;
+  "Darwin")
+    mitamae_bin="mitamae-x86_64-darwin"
+    mitamae_sha256="23c761264d55195d1f4263a1ac90c76992f9af00bf698c4eb1dfa969912e5d71"
+    ;;
+  *)
+    echo "Error: unexpected uname"
+    exit 1
+    ;;
+esac
+
+mitamae_origin="https://github.com/itamae-kitchen/mitamae/releases/download/v${mitamae_version}/${mitamae_bin}.tar.gz"
+
+dot_dir="$(cd $(dirname $0); cd ..; pwd)"
+bin="${dot_dir}/bin/mitamae"
+tar="${dot_dir}/bin/mitamae-${mitamae_bin}.tar.gz"
+
+if [ ! -e "${bin}" ]; then
+  curl -o "${tar}" -fL "${mitamae_origin}"
+  downloaded_sha256="$(openssl dgst -sha256 "${tar}" | cut -d ' ' -f 2)"
+  if [ "${mitamae_sha256}" != "${downloaded_sha256}" ]; then
+    echo "Error: invalid checksum"
+    echo "expected: ${mitamae_sha256}"
+    echo "actual  : ${downloaded_sha256}"
+    exit 1
+  fi
+  tar xvzf "${tar}"
+  mv "${mitamae_bin}" "${bin}"
+  rm "${tar}"
+fi
