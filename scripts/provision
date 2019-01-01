@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -eu
+
+dot_dir=$(cd $(dirname $0); cd ..; pwd)
+
+if [ ! -e $dot_dir/bin/mitamae ]; then
+  echo "Error: mitamae not found"
+  exit 1
+fi
+
+if [ "$(uname)" = "Darwin" ]; then
+  if ! type brew > /dev/null; then
+    echo "Error: brew not found"
+    exit 1
+  fi
+fi
+
+case "$(uname)" in
+  "Darwin")  $dot_dir/bin/mitamae local $@ $dot_dir/lib/recipe.rb ;;
+  *) sudo -E $dot_dir/bin/mitamae local $@ $dot_dir/lib/recipe.rb ;;
+esac
