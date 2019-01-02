@@ -5,6 +5,11 @@ include_cookbook 'vim'
 include_cookbook 'zsh'
 include_cookbook 'tmux'
 
+include_cookbook 'perl'
+include_cookbook 'ruby'
+include_cookbook 'nodejs'
+include_cookbook 'golang'
+
 include_cookbook 'i3'
 include_cookbook 'urxvt'
 include_cookbook 'polybar'
