@@ -4,7 +4,7 @@ url = "https://github.com/Jguer/yay/releases/download/v#{yay_version}/yay_#{yay_
 archive = "/tmp/yay_#{yay_version}_x86_64.tar.gz"
 extracted_bin = "/tmp/jyay_#{yay_version}_x86_64/yay"
 
-execute "curl -fSL -p #{archive} #{url}" do
+execute "curl -fSL -o #{archive} #{url}" do
   user node[:user]
   not_if "command -v yay"
 end
