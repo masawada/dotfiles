@@ -2,7 +2,7 @@ yay_version = '9.0.1'
 
 url = "https://github.com/Jguer/yay/releases/download/v#{yay_version}/yay_#{yay_version}_x86_64.tar.gz"
 archive = "/tmp/yay_#{yay_version}_x86_64.tar.gz"
-extracted_bin = "/tmp/jyay_#{yay_version}_x86_64/yay"
+extracted_bin = "/tmp/yay_#{yay_version}_x86_64/yay"
 
 execute "curl -fSL -o #{archive} #{url}" do
   user node[:user]
