@@ -9,10 +9,12 @@ execute "curl -fSL -o #{archive} #{url}" do
   not_if "command -v yay"
 end
 execute "tar zxvf #{archive}" do
+  user node[:user]
   not_if 'command -v yay'
   cwd '/tmp'
 end
 execute "#{extracted_bin} -Syu yay-bin --noconfirm --noprovides" do
+  user node[:user]
   not_if 'command -v yay'
 end
 
