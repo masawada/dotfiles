@@ -1,0 +1,46 @@
+# Hokan
+autoload -Uz compinit && compinit
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt correct
+
+zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # ignore case
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+zstyle ':completion:*' list-separator '-'
+
+# Color
+export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# Prompt
+autoload -Uz colors && colors
+PROMPT="%{${fg[yellow]}%}%(!.#.$) %{$reset_color%}"
+PROMPT2="%{${fg[yellow]}%}%_> %{$reset_color%}"
+SPROMPT="%r is correct? [n,y,a,e]: "
+
+precmd () {
+  RPROMPT="%{${fg[yellow]}%}[$(pwd)]%{${reset_color}%}"
+}
+
+# History
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=100000
+SAVEHIST=$HISTSIZE
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_no_store
+
+# load *env
+whence plenv  > /dev/null 2>&1 && eval "$(plenv init - zsh)"
+whence rbenv  > /dev/null 2>&1 && eval "$(rbenv init - zsh)"
+whence nodenv > /dev/null 2>&1 && eval "$(nodenv init - zsh)"
+whence direnv > /dev/null 2>&1 && eval "$(direnv hook zsh)"
+
+# Default Permission
+umask 022
+
+# Beep
+setopt nolistbeep

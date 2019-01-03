@@ -1,0 +1,58 @@
+# PATH
+export GOPATH="${HOME}/.go"
+export GOBIN="${GOPATH}/bin"
+
+typeset -gx -U path
+path=(
+  $HOME/.dotfiles/bin(N-/)
+  $HOME/.cargo/bin(N-/)
+  $GOBIN(N-/)
+  $HOME/.plenv/bin(N-/)
+  $HOME/.plenv/shims(N-/)
+  $HOME/.rbenv/bin(N-/)
+  $HOME/.rbenv/shims(N-/)
+  $HOME/.ndenv/bin(N-/)
+  $HOME/.ndenv/shims(N-/)
+  $HOME/.pyenv/bin(N-/)
+  $HOME/.pyenv/shims(N-/)
+  /usr/local/bin(N-/)
+  /usr/local/sbin(N-/)
+  /usr/bin(N-/)
+  /usr/sbin(N-/)
+  /bin(N-/)
+  /sbin(N-/)
+)
+
+typeset -gx -U fpath
+fpath=(
+  $HOME/.zsh/functions(N-/)
+  $fpath
+)
+
+# Language
+export LANGUAGE="en_US.UTF-8"
+export LANG="${LANGUAGE}"
+export LC_COLLATE="${LANGUAGE}"
+export LC_CTYPE="${LANGUAGE}"
+export LC_MESSAGES="${LANGUAGE}"
+export LC_MONETARY="${LANGUAGE}"
+export LC_NUMERIC="${LANGUAGE}"
+export LC_TIME="${LANGUAGE}"
+export LC_ALL="${LANGUAGE}"
+
+# Editor
+export EDITOR=vi
+whence vim > /dev/null 2>&1 && export EDITOR=vim
+export GIT_EDITOR="${EDITOR}"
+
+# Pager
+export PAGER="less"
+export LESS="-FRX"
+
+# History
+export HISTFILE="${HOME}/.zsh_history"
+export HISTSIZE=1000000
+export SAVEHIST=${HISTSIZE}
+
+# Misc
+export REPORTTIME=1
