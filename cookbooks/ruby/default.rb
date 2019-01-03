@@ -9,3 +9,6 @@ node.reverse_merge!(
 )
 
 include_recipe "rbenv::user"
+
+dotfile '.bundle'
+dotfile '.gemrc'
