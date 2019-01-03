@@ -1,5 +1,6 @@
 !!! rxvt-unicode (urxvt)
 
+!! font
 Xft.antialias: 1
 Xft.rgba: rgb
 Xft.hinting: 1
@@ -7,9 +8,7 @@ Xft.hintstyle: hintslight
 Xft.autohint: 0
 
 URxvt.letterSpace: -1
-URxvt.font: xft:Hack-Regular:pixelsize=12
-
-
+URxvt.font: xft:Hack-Regular:pixelsize=14
 
 !! solarized dark
 !! http://github.com/altercation/solarized
