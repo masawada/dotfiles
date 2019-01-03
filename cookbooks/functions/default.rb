@@ -24,7 +24,7 @@ define :github_binary, repository: nil, version: nil, archive: nil do
   end
 
   execute extract do
-    cwd 'tmp'
+    cwd '/tmp'
     not_if "test -f #{bin}"
   end
   execute "mv #{extracted}/#{name} #{bin} && chmod +x #{bin}" do
