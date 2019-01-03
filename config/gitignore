@@ -1,0 +1,26 @@
+# Swap files
+*.swp
+*.swo
+
+# Local files
+.gitconfig.local
+.gitignore.local
+
+# Folder view config files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+*~
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Redis dump file
+dump.rdb
+
+# Ignore vendor/bundle
+vendor/bundle

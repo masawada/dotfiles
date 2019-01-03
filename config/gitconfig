@@ -1,0 +1,33 @@
+[user]
+	  email = developer@andantesoftware.com
+	  name = Masayoshi Wada
+
+[core]
+    editor = vim
+	  excludesfile = ~/.gitignore
+	  ignorecase = false
+	  precomposeunicode = true
+
+[color]
+	  ui = auto
+
+[alias]
+	  co = checkout
+	  s = status -sb
+    b = branch -l
+
+[help]
+    autocorrect = 1
+
+[pull]
+	  rebase = true
+
+[merge]
+	  ff = false
+
+[ghq]
+    root = ~/.ghq
+    root = ~/.go/src
+
+[github]
+    user = masawada
