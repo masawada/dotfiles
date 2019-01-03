@@ -9,24 +9,25 @@ define :github_binary, repository: nil, version: nil, archive: nil do
   bin = "/usr/local/bin/#{name}"
   url = "https://github.com/#{repository}/releases/download/#{version}/#{archive}"
 
+  execute "curl -fSL -o /tmp/#{archive} #{url}" do
+    not_if "test -f #{bin}"
+  end
+
   if archive.end_with?('.zip')
-    extract   = 'unzip -o'
-    extracted = archive.sub(/\.zip$/, '')
+    extracted = File.join('/tmp', archive.sub(/\.zip$/, ''))
+    extract   = "unzip -o /tmp/#{archive} -d #{extracted}"
   elsif archive.end_with?('.tar.gz')
-    extract   = 'tar zxvf'
-    extracted = archive.sub(/\.tar\.gz$/, '')
+    extracted = File.join('/tmp', archive.sub(/\.tar\.gz$/, ''))
+    extract   = "tar zxvf /tmp/#{archive}"
   else
     raise
   end
 
-  execute "curl -fSL -o /tmp/#{archive} #{url}" do
-    not_if "test -f #{bin}"
-  end
-  execute "#{extract} /tmp/#{archive}" do
+  execute extract do
     cwd 'tmp'
     not_if "test -f #{bin}"
   end
-  execute "mv /tmp/#{extracted}/#{name} #{bin} && chmod +x #{bin}" do
+  execute "mv #{extracted}/#{name} #{bin} && chmod +x #{bin}" do
     not_if "test -f #{bin}"
   end
 end
