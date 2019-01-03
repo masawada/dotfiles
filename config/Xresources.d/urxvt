@@ -10,6 +10,9 @@ Xft.autohint: 0
 URxvt.letterSpace: -1
 URxvt.font: xft:Hack-Regular:pixelsize=14
 
+!! scrollbar
+URxvt.scrollBar: false
+
 !! solarized dark
 !! http://github.com/altercation/solarized
 URxvt.background: #002b36
