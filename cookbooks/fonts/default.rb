@@ -1,4 +1,8 @@
-package 'adobe-source-han-sans-otc-fonts'
-package 'adobe-source-han-serif-otc-fonts'
-package 'ttf-hack'
-package 'ttf-inconsolata'
+%w[
+  adobe-source-han-sans-otc-fonts
+  adobe-source-han-serif-otc-fonts
+  ttf-hack
+  ttf-inconsolata
+].each do |font|
+  package font
+end
