@@ -13,6 +13,7 @@ include_cookbook 'nodejs'
 include_cookbook 'golang'
 
 include_cookbook 'i3'
+include_cookbook 'Xresources'
 include_cookbook 'urxvt'
 include_cookbook 'polybar'
 include_cookbook 'rofi'
