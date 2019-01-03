@@ -1,29 +1,29 @@
 [user]
-	  email = developer@andantesoftware.com
-	  name = Masayoshi Wada
+    email = developer@andantesoftware.com
+    name = Masayoshi Wada
 
 [core]
     editor = vim
-	  excludesfile = ~/.gitignore
-	  ignorecase = false
-	  precomposeunicode = true
+    excludesfile = ~/.gitignore
+    ignorecase = false
+    precomposeunicode = true
 
 [color]
-	  ui = auto
+  ui = auto
 
 [alias]
-	  co = checkout
-	  s = status -sb
+    co = checkout
+    s = status -sb
     b = branch -l
 
 [help]
     autocorrect = 1
 
 [pull]
-	  rebase = true
+    rebase = true
 
 [merge]
-	  ff = false
+    ff = false
 
 [ghq]
     root = ~/.ghq
