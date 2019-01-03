@@ -4,6 +4,8 @@ include_cookbook 'yay'
 include_cookbook 'vim'
 include_cookbook 'zsh'
 include_cookbook 'tmux'
+include_cookbook 'ghq'
+include_cookbook 'peco'
 
 include_cookbook 'perl'
 include_cookbook 'ruby'
@@ -16,6 +18,8 @@ include_cookbook 'polybar'
 include_cookbook 'rofi'
 include_cookbook 'fonts'
 include_cookbook 'ibus-skk'
+include_cookbook 'netctl'
+include_cookbook 'dunst'
 
 include_cookbook 'docker'
 
