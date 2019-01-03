@@ -17,7 +17,7 @@ define :github_binary, repository: nil, version: nil, archive: nil do
     raise
   end
 
-  execute "curl -fSL -p /tmp/#{archive} #{url}" do
+  execute "curl -fSL -o /tmp/#{archive} #{url}" do
     not_if "test -f #{bin}"
   end
   execute "#{extract} /tmp/#{archive}" do
