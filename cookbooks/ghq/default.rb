@@ -14,5 +14,5 @@ end
 ghq_path="#{ENV['HOME']}/.ghq"
 directory ghq_path do
   user node[:user]
-  not_if File.exist?(ghq_path)
+  not_if { File.exist?(ghq_path) }
 end
