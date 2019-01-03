@@ -25,3 +25,5 @@ include_cookbook 'docker'
 
 include_cookbook 'google-chrome'
 include_cookbook 'slack'
+
+dotfile '.xinitrc'
