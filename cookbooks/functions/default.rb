@@ -1,3 +1,5 @@
+package 'unzip'
+
 define :github_binary, repository: nil, version: nil, archive: nil do
   name       = params[:name]
   version    = params[:version]
