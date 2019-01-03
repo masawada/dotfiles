@@ -31,3 +31,27 @@ define :github_binary, repository: nil, version: nil, archive: nil do
     not_if "test -f #{bin}"
   end
 end
+
+define :dotfile do
+  name   = params[:name]
+  source = name.sub(/^\./, '')
+
+  source_path = File.join(node[:dot_dir], 'config', source)
+  destination_path = File.join(ENV['HOME'], name)
+
+  source_dir = File.dirname(source)
+  if source_dir != '.'
+    destination_dir = File.dirname(destination_path)
+    directory destination_dir do
+      action :create
+      user node[:user]
+      not_if { File.exist?(destination_dir) }
+    end
+  end
+
+  link destination_path do
+    to source_path
+    user node[:user]
+    not_if { File.exist?(destination_path) }
+  end
+end
