@@ -8,7 +8,7 @@ Xft.hintstyle: hintslight
 Xft.autohint: 0
 
 URxvt.letterSpace: -1
-URxvt.font: xft:Hack-Regular:pixelsize=14
+URxvt.font: xft:Ricty-Regular:pixelsize=18
 
 !! scrollbar
 URxvt.scrollBar: false
