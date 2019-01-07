@@ -6,3 +6,5 @@
 ].each do |font|
   package font
 end
+
+yay 'ttf-ricty'
