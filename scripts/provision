@@ -16,6 +16,8 @@ if [ "$(uname)" = "Darwin" ]; then
   fi
 fi
 
+git submodule init && git submodule sync && git submodule update --depth 1
+
 case "$(uname)" in
   "Darwin")  /usr/local/bin/mitamae local $@ $dot_dir/lib/recipe.rb ;;
   *) sudo -E /usr/local/bin/mitamae local $@ $dot_dir/lib/recipe.rb ;;
