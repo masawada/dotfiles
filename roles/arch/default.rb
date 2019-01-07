@@ -7,6 +7,7 @@ include_cookbook 'zsh'
 include_cookbook 'tmux'
 include_cookbook 'ghq'
 include_cookbook 'peco'
+include_cookbook 'ssh-agent'
 
 include_cookbook 'perl'
 include_cookbook 'ruby'
