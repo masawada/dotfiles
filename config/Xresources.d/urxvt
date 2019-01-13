@@ -15,7 +15,7 @@ URxvt.scrollBar: false
 
 !! solarized dark
 !! http://github.com/altercation/solarized
-URxvt.background: #002b36
+URxvt.background: #fdf6e3
 URxvt.foreground: #657b83
 
 ! black dark/light
