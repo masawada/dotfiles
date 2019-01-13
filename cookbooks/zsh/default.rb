@@ -6,3 +6,4 @@ end
 
 dotfile '.zshenv'
 dotfile '.zshrc'
+dotfile '.zsh'

@@ -56,3 +56,6 @@ umask 022
 
 # Beep
 setopt nolistbeep
+
+# Load environment dependent configurations
+[ -f "${HOME}/.zsh/zshrc.`uname`" ] && source "${HOME}/.zsh/zshrc.`uname`"
