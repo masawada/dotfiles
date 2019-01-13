@@ -1,1 +1,5 @@
-
+# ssh-agent configuration
+if pgrep ssh-agent > /dev/null; then
+  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+  export SSH_AGENT_PID=`pgrep ssh-agent`
+fi
