@@ -72,3 +72,21 @@ define :user_service, action: [] do
     end
   end
 end
+
+define :expand_sudo_timeout, name: nil do
+  config_path = '/etc/sudoers.d/expand_timeout'
+
+  case params[:name]
+  when :start
+    file config_path do
+      action :create
+      content "Defaults timestamp_timeout=1800\n"
+      not_if "test -f #{config_path}"
+    end
+  when :end
+    file config_path do
+      action :delete
+      only_if "test -f #{config_path}"
+    end
+  end
+end

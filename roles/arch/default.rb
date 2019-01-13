@@ -1,5 +1,7 @@
 include_cookbook 'functions'
 
+expand_sudo_timeout :start
+
 include_cookbook 'yay'
 include_cookbook 'git'
 include_cookbook 'vim'
@@ -30,3 +32,5 @@ include_cookbook 'google-chrome'
 include_cookbook 'slack'
 
 dotfile '.xinitrc'
+
+expand_sudo_timeout :end
