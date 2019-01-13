@@ -2,6 +2,7 @@ let g:plugins_dir = expand($HOME.'/.vim/plugins')
 
 call plug#begin(g:plugins_dir)
 
+Plug 'altercation/vim-colors-solarized'
 Plug 'cohama/lexima.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
@@ -79,13 +80,13 @@ if s:is_installed('completor.vim')
   inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 endif
 
-if s:is_installed('jellybeans.vim')
-  let g:jellybeans_background_color_256='NONE'
-  colorscheme jellybeans
+if s:is_installed('vim-colors-solarized')
+  colorscheme solarized
+  set background=light
 endif
 
-if s:is_installed('jellybeans.vim') && s:is_installed('lightline.vim')
+if s:is_installed('vim-colors-solarized') && s:is_installed('lightline.vim')
   let g:lightline = {
-    \ 'colorscheme': 'jellybeans',
+    \ 'colorscheme': 'solarized',
     \ }
 endif
