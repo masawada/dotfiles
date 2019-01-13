@@ -7,9 +7,8 @@ when 'darwin'
   end
 end
 
-dotfile 'vimrc'
-dotfile 'vim'
-
+dotfile '.vimrc'
+dotfile '.vim'
 
 plug_vim_source = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 plug_vim_path = "#{node[:dot_dir]}/config/vim/autoload/plug.vim"
