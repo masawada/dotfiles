@@ -2,3 +2,4 @@
 !/config/vim/autoload/.keep
 /config/vim/plugins/*
 !/config/vim/plugins/.keep
+/config/vim/.netrwhist
