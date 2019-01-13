@@ -15,3 +15,5 @@ plug_vim_path = "#{node[:dot_dir]}/config/vim/autoload/plug.vim"
 execute "curl -fSL -o #{plug_vim_path} #{plug_vim_source}" do
   not_if "test -f #{plug_vim_path}"
 end
+
+execute "vim +'PlugInstall --sync' +qa"
