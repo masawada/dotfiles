@@ -1,0 +1,33 @@
+# Package
+snippet package
+	package `expand('%:p:s?.*lib/??:r:gs?/?::?')`;
+
+	use strict;
+	use warnings;
+	use utf8;
+
+	${0}
+
+	1;
+# Test
+snippet test
+	package t::`expand('%:p:s?.*t/??:r:gs?-?::?')`;
+
+	sub _require : Test(startup => 1) {
+		require_ok '`expand('%:p:s?.*t/??:r:gs?-?::?')`';
+	}
+
+	${0}
+
+	1;
+# Data::Dumper
+snippet dd
+	use Data::Dumper;
+	warn Dumper(${0});
+# Data::Printer
+snippet dp
+	use DDP { deparse => 1 };
+	p ${0}
+# Hash pointer
+snippet .
+	=> ${0},
