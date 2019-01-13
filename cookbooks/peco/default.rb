@@ -10,3 +10,5 @@ github_binary 'peco' do
   version 'v0.5.3'
   archive archive_name
 end
+
+dotfile '.peco'
