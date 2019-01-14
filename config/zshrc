@@ -59,3 +59,66 @@ setopt nolistbeep
 
 # Load environment dependent configurations
 [ -f "${HOME}/.zsh/zshrc.$(uname)" ] && source "${HOME}/.zsh/zshrc.$(uname)"
+
+# Functions
+function peco-select-history {
+  local tac
+  if whence tac > /dev/null; then
+    tac="tac"
+  else
+    tac="tail -r"
+  fi
+  BUFFER=$(history -n 1 | $tac | peco --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle clear-screen
+}
+zle -N peco-select-history
+
+function peco-find {
+  local current_buffer=$BUFFER
+  local file_type=''
+  local file_path=''
+  local git_search_command=''
+
+  if echo "$current_buffer" | grep -E '^(cd|ls)'; then
+    file_type='d'
+    git_search_command='git ls-files $(git rev-parse --show-toplevel) --full-name | while read line; do echo ${line%/*}; done | sort | uniq'
+  else
+    file_type='f'
+    git_search_command='{ git ls-files $(git rev-parse --show-toplevel) --full-name; git ls-files $(git rev-parse --show-toplevel) --exclude-standard --other --full-name } | sort'
+  fi
+
+  if git rev-parse 2> /dev/null; then
+    file_path=$(eval "${git_search_command}" | peco)
+  else
+    file_path=$(find -L . -type ${file_type} -maxdepth 10 | peco)
+  fi
+
+  if [ ${#file_path} -ne 0 ]; then
+    BUFFER="${current_buffer} ${file_path}"
+    CURSOR=${#BUFFER}
+  fi
+}
+zle -N peco-find
+
+function peco-ghq {
+  local dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ $dir ]; then
+    BUFFER = "cd ${dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-ghq
+
+function cd-to-top {
+  BUFFER="cd $(git rev-parse --show-toplevel)"
+  zle accept-line
+  zle clear-screen
+}
+zle -N cd-to-top
+
+whence peco-select-history > /dev/null 2>&1 && bindkey '^r' peco-select-history
+whence peco-find           > /dev/null 2>&1 && bindkey '^f' peco-find
+whence peco-ghq            > /dev/null 2>&1 && bindkey '^g' peco-ghq
+whence cd-to-top           > /dev/null 2>&1 && bindkey '^t' cd-to-top
