@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd $(git rev-parse --show-toplevel)
+TARGET_LINE=$(git grep -n $@ | peco)
+[ ${#TARGET_LINE} -eq 0 ] && exit;
+
+case $EDITOR in
+  vim) $EDITOR $(echo $TARGET_LINE | awk -F ':' '{print "-c "$2" "$1}') ;;
+  *) echo 'vim support only' ;;
+esac

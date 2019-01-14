@@ -1,0 +1,13 @@
+#!/bin/bash
+
+FILES=$(git status --porcelain | sed '/^(A|UU|M)/d' | peco | awk '{ print $2 }')
+if [ -n "$FILES" ]; then
+  cd $(git rev-parse --show-toplevel)
+  git add $(echo "$FILES" | tr "\n" " ")
+
+  echo "Added:"
+  for line in $FILES
+  do
+    echo $line
+  done
+fi

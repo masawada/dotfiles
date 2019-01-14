@@ -1,0 +1,9 @@
+#!/bin/bash
+
+path=$({\
+  git diff --name-only HEAD; \
+  git ls-files $(git rev-parse --show-toplevel) --exclude-standard --others --full-name; \
+} | peco)
+if [ ${#path} -ne 0 ]; then
+  vim $(git rev-parse --show-toplevel)/${path}
+fi

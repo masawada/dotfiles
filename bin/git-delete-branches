@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SELECTED_BRANCHES=$(git branch -l | grep -Ev '^\*' | awk '{ print $1 }' | peco)
+if [ -n "$SELECTED_BRANCHES" ]; then
+  git branch -d $(echo "$SELECTED_BRANCHES" | tr "\n" " ")
+fi
