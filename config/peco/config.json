@@ -8,6 +8,7 @@
   "Style": {
     "Basic": ["on_default", "default"],
     "SavedSelection": ["bold", "on_cyan", "white"],
-    "Selected": ["on_cyan", "white"]
+    "Selected": ["on_cyan", "white"],
+    "Matched": ["underline", "on_cyan", "white"]
   }
 }
