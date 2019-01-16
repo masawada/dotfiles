@@ -4,5 +4,10 @@
     "C-j": "peco.SelectDown",
     "C-f": "peco.ScrollPageDown",
     "C-b": "peco.ScrollPageUp"
+  },
+  "Style": {
+    "Basic": ["on_default", "default"],
+    "SavedSelection": ["bold", "on_cyan", "white"],
+    "Selected": ["on_cyan", "white"]
   }
 }
