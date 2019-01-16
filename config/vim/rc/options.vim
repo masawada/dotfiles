@@ -13,7 +13,7 @@ set fileformats=unix,dos,mac
 
 "Use OS native clipboard"
 if has('clipboard')
-  set clipboard=unnamed
+  set clipboard=unnamedplus
 endif
 
 "Do not create backup file"
