@@ -6,3 +6,6 @@ when 'arch'
 when 'darwin'
   package 'reattach-to-user-namespace'
 end
+
+dotfile '.tmux.conf'
+dotfile '.tmux'
