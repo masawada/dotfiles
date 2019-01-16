@@ -90,6 +90,9 @@ function peco-find {
 
   if git rev-parse 2> /dev/null; then
     file_path=$(eval "${git_search_command}" | peco)
+    if [ ${#file_path} -ne 0 ]; then
+      file_path=`git rev-parse --show-toplevel`/${file_path}
+    fi
   else
     file_path=$(find -L . -type ${file_type} -maxdepth 10 | peco)
   fi
