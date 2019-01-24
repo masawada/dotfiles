@@ -7,3 +7,5 @@ node.reverse_merge!(
     ],
   },
 )
+
+include_recipe "plenv::user"
