@@ -13,8 +13,6 @@ path=(
   $HOME/.rbenv/shims(N-/)
   $HOME/.ndenv/bin(N-/)
   $HOME/.ndenv/shims(N-/)
-  $HOME/.pyenv/bin(N-/)
-  $HOME/.pyenv/shims(N-/)
   /usr/local/bin(N-/)
   /usr/local/sbin(N-/)
   /usr/bin(N-/)
