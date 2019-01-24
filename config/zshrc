@@ -106,8 +106,8 @@ zle -N peco-find
 
 function peco-ghq {
   local dir=$(ghq list -p | peco --query "$LBUFFER")
-  if [ $dir ]; then
-    BUFFER = "cd ${dir}"
+  if [ ${#dir} -ne 0 ]; then
+    BUFFER="cd ${dir}"
     zle accept-line
   fi
   zle clear-screen
