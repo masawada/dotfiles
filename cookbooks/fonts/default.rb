@@ -3,6 +3,7 @@
   adobe-source-han-serif-otc-fonts
   ttf-hack
   ttf-inconsolata
+  ttf-font-awesome
 ].each do |font|
   package font
 end
