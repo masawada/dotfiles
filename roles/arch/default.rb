@@ -14,6 +14,8 @@ include_cookbook 'ssh-agent'
 include_cookbook 'ghq'
 include_cookbook 'peco'
 include_cookbook 'docker'
+include_cookbook 'jq'
+include_cookbook 'tree'
 
 # languages
 include_cookbook 'perl'
