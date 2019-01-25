@@ -1,0 +1,34 @@
+[colors]
+background = #222
+foreground = #F0F0F0
+
+[bar/bottom]
+bottom = true
+width = 100%
+height = 27
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #F00
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = fixed:pixelsize = 10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10;1
+
+modules-right = date
+
+[module/date]
+type = internal/date
+date = "%a, %b %d %H:%M:%S"
+date-alt = "%Y-%m-%d %H:%M:%S"
+
+; vim:ft=dosini
