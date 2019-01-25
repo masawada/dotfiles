@@ -13,10 +13,14 @@ URxvt.font: xft:Ricty-Regular:pixelsize=18
 !! scrollbar
 URxvt.scrollBar: false
 
+!! transparency
+URxvt.transparent: true
+URxvt.shading: 30
+
 !! solarized dark
 !! http://github.com/altercation/solarized
-URxvt.background: #fdf6e3
-URxvt.foreground: #657b83
+URxvt.background: #657b83
+URxvt.foreground: #fdf6e3
 
 ! black dark/light
 URxvt.color0: #073642
