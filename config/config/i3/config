@@ -119,6 +119,10 @@ bindsym $mod+r mode "resize"
 
 bindsym Mod1+space exec "rofi -show combi -modi combi,run,ssh -combi-modi window,drun -sidebar-mode"
 
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+
 set $Locker i3lock && sleep 1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
