@@ -25,6 +25,7 @@ include_cookbook 'golang'
 
 # desktop environments
 include_cookbook 'i3'
+include_cookbook 'pulseaudio'
 include_cookbook 'Xresources'
 include_cookbook 'xrandr'
 include_cookbook 'urxvt'
