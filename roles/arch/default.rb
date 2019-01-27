@@ -40,5 +40,6 @@ include_cookbook 'google-chrome'
 include_cookbook 'slack'
 
 dotfile '.xinitrc'
+dotfile '.Xmodmap'
 
 expand_sudo_timeout :end
