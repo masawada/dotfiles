@@ -26,6 +26,7 @@ include_cookbook 'golang'
 # desktop environments
 include_cookbook 'i3'
 include_cookbook 'Xresources'
+include_cookbook 'xrandr'
 include_cookbook 'urxvt'
 include_cookbook 'polybar'
 include_cookbook 'rofi'
