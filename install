@@ -8,7 +8,7 @@ fi
 git clone git@github.com:masawada/dotfiles.git $HOME/.dotfiles
 cd $HOME/.dotfiles
 
-exec $HOME/scripts/install_mitamae
-exec $HOME/scripts/provision
+exec $HOME/.dotfiles/scripts/install_mitamae
+exec $HOME/.dotfiles/scripts/provision
 
 # vim: set ft=sh ff=unix fileencoding=utf-8 expandtab ts=2 sw=2 :
