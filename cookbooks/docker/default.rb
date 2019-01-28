@@ -10,3 +10,7 @@ execute 'add user to docker group' do
   not_if "getent group docker | grep #{user}"
   command "usermod #{user} -aG docker"
 end
+
+service 'docker' do
+  action [:enable, :start]
+end
