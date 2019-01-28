@@ -16,6 +16,8 @@ include_cookbook 'peco'
 include_cookbook 'docker'
 include_cookbook 'jq'
 include_cookbook 'tree'
+include_cookbook 'dnsmasq'
+include_cookbook 'dnsutils'
 
 # languages
 include_cookbook 'perl'
