@@ -43,6 +43,9 @@ include_cookbook 'feh'
 include_cookbook 'google-chrome'
 include_cookbook 'slack'
 
+# laptop power management
+include_cookbook 'tlp'
+
 dotfile '.xinitrc'
 dotfile '.Xmodmap'
 
