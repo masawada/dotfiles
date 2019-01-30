@@ -15,6 +15,7 @@
     co = checkout
     s = status -sb
     b = branch -l
+    see = !hub browse -- pull/$(git symbolic-ref --short HEAD)
 
 [help]
     autocorrect = 1
