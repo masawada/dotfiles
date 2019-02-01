@@ -8,4 +8,10 @@
   package font
 end
 
-yay 'ttf-ricty'
+%w[
+  ttf-ricty
+  siji-git
+  cherry-font-git
+].each do |font|
+  yay font
+end
