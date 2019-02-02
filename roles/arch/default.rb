@@ -11,14 +11,16 @@ include_cookbook 'tmux'
 include_cookbook 'ssh-agent'
 
 # tools
+include_cookbook 'dhclient'
+include_cookbook 'netctl'
+include_cookbook 'dnsmasq'
+include_cookbook 'dnsutils'
+include_cookbook 'lsof'
 include_cookbook 'ghq'
 include_cookbook 'peco'
 include_cookbook 'docker'
 include_cookbook 'jq'
 include_cookbook 'tree'
-include_cookbook 'dnsmasq'
-include_cookbook 'dnsutils'
-include_cookbook 'lsof'
 
 # languages
 include_cookbook 'perl'
@@ -38,7 +40,6 @@ include_cookbook 'polybar'
 include_cookbook 'rofi'
 include_cookbook 'fonts'
 include_cookbook 'ibus-skk'
-include_cookbook 'netctl'
 include_cookbook 'dunst'
 include_cookbook 'feh'
 
