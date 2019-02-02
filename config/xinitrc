@@ -1,6 +1,5 @@
 # configure appearance
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
-[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 # input method settings
 export GTK_IM_MODULE=ibus
