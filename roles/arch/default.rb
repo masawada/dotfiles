@@ -18,6 +18,7 @@ include_cookbook 'jq'
 include_cookbook 'tree'
 include_cookbook 'dnsmasq'
 include_cookbook 'dnsutils'
+include_cookbook 'lsof'
 
 # languages
 include_cookbook 'perl'
