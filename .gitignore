@@ -1,3 +1,5 @@
+/config/bundle/*
+!/config/bundle/config
 /config/vim/autoload/*
 !/config/vim/autoload/.keep
 /config/vim/plugins/*
