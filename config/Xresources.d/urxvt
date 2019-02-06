@@ -13,6 +13,14 @@ URxvt.font: xft:Ricty-Regular:pixelsize=18
 !! scrollbar
 URxvt.scrollBar: false
 
+!! perl extention
+URxvt.perl-ext-common: resize-font
+
+!! font resize keybind
+URxvt.keysym.C-minus: resize-font:smaller
+URxvt.keysym.C-equal: resize-font:bigger
+URxvt.keysym.C-0:     resize-font:reset
+
 !! solarized dark
 !! http://github.com/altercation/solarized
 URxvt.depth: 32
