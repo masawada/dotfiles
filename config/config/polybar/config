@@ -1,41 +1,63 @@
 [colors]
-background  = #fafafa
-foreground  = #444444
-bordercolor = #dddddd
-accent      = #e60053
+background  = #ccf0f0f0
+foreground  = #333
+bordercolor = #ccc
 
 [bar/top]
-width = 100%
+monitor = ${env:MONITOR:}
+width  = 100%
 height = 24
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-padding-left = 0
-padding-right = 1
-
+border-bottom-size = 1
 border-bottom-color = ${colors.bordercolor}
-border-bottom-size = 2
 
-module-margin-left = 1
-module-margin-right = 2
+padding-left  = 0
+padding-right = 2
 
-font-0 = Hack:style=Regular:size=9;3
-font-1 = Source Han Sans:style=Normal,Regular:size=10
-font-2 = Font Awesome 5 Free:style=Regular:size=10
+module-margin-left  = 1
+module-margin-right = 1
 
-modules-right = pulseaudio battery date
+modules-center = xwindow
+modules-right = wlan front-battery rear-battery date
 
-[module/pulseaudio]
-type = internal/pulseaudio
+font-0 = t cherry:antialias=false:size=12;2
+font-1 = Wuncon Siji:antialias=false:size=12;2
+font-2 = Ricty:antialias=true:size=10;3
 
-[module/battery]
+[module/xwindow]
+type   = internal/xwindow
+format = %{T3}<label>%{T-}
+label-maxlen = 60
+
+[module/wlan]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+
+label-connected = %essid%
+label-disconnected = %ifname% disconnected
+
+[module/front-battery]
 type = internal/battery
-poll-interval = 5
+battery = BAT0
+full-at = 79
+label-charging    = %percentage%% (F)
+label-discharging = %percentage%% (F)
+
+[module/rear-battery]
+type = internal/battery
+battery = BAT1
+full-at = 79
+label-charging    = %percentage%% (R)
+label-discharging = %percentage%% (R)
 
 [module/date]
-type = internal/date
+type  = internal/date
 date = "%a, %b %d %H:%M:%S"
 date-alt = "%Y-%m-%d %H:%M:%S"
+interval = 1
 
-; vim:ft=dosini
+; vim:ft=cfg
