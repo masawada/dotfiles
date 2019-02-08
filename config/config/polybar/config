@@ -21,7 +21,7 @@ module-margin-left  = 1
 module-margin-right = 1
 
 modules-center = xwindow
-modules-right = wlan front-battery rear-battery date
+modules-right = volume wlan front-battery rear-battery date
 
 font-0 = t cherry:antialias=false:size=12;2
 font-1 = Wuncon Siji:antialias=false:size=12;2
@@ -37,27 +37,27 @@ type = internal/network
 interface = wlp3s0
 interval = 3.0
 
-label-connected = %essid%
-label-disconnected = %ifname% disconnected
+label-connected = %{T2}%{T-} %essid%
+label-disconnected = %{T2}%{T-} %ifname% disconnected
 
 [module/front-battery]
 type = internal/battery
 battery = BAT0
-full-at = 79
-label-charging    = %percentage%% (F)
-label-discharging = %percentage%% (F)
+full-at = 89
+label-charging    = %{T2}%{T-} %percentage%%(F)
+label-discharging = %{T2}%{T-} %percentage%%(F)
 
 [module/rear-battery]
 type = internal/battery
 battery = BAT1
-full-at = 79
-label-charging    = %percentage%% (R)
-label-discharging = %percentage%% (R)
+full-at = 89
+label-charging    = %{T2}%{T-} %percentage%%(R)
+label-discharging = %{T2}%{T-} %percentage%%(R)
 
 [module/date]
 type  = internal/date
-date = "%a, %b %d %H:%M:%S"
-date-alt = "%Y-%m-%d %H:%M:%S"
+date = %{T2}%{T-} %a, %b %d %H:%M:%S
+date-alt = %{T2}%{T-} %Y-%m-%d %H:%M:%S
 interval = 1
 
 ; vim:ft=cfg
