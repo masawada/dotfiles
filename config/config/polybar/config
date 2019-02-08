@@ -20,12 +20,16 @@ padding-right = 2
 module-margin-left  = 1
 module-margin-right = 1
 
+modules-left   = i3
 modules-center = xwindow
-modules-right = volume wlan front-battery rear-battery date
+modules-right  = volume wlan front-battery rear-battery date
 
 font-0 = t cherry:antialias=false:size=12;2
 font-1 = Wuncon Siji:antialias=false:size=12;2
 font-2 = Ricty:antialias=true:size=10;3
+
+[module/i3]
+type = internal/i3
 
 [module/xwindow]
 type   = internal/xwindow
