@@ -32,6 +32,12 @@ type   = internal/xwindow
 format = %{T3}<label>%{T-}
 label-maxlen = 60
 
+[module/volume]
+type = internal/pulseaudio
+
+format-volume = %{T2}%{T-} <label-volume>
+format-muted  = %{T2}%{T-} muted
+
 [module/wlan]
 type = internal/network
 interface = wlp3s0
