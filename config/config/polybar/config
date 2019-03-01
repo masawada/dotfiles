@@ -53,14 +53,12 @@ label-disconnected = %{T2}%{T-} %ifname% disconnected
 [module/front-battery]
 type = internal/battery
 battery = BAT0
-full-at = 89
 label-charging    = %{T2}%{T-} %percentage%%(F)
 label-discharging = %{T2}%{T-} %percentage%%(F)
 
 [module/rear-battery]
 type = internal/battery
 battery = BAT1
-full-at = 89
 label-charging    = %{T2}%{T-} %percentage%%(R)
 label-discharging = %{T2}%{T-} %percentage%%(R)
 
