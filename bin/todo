@@ -1,0 +1,62 @@
+#!/bin/bash
+
+if ! type peco > /dev/null 2>&1; then
+  echo 'peco not found'
+  exit 1;
+fi
+
+COMMAND=$1
+[ -v $COMMAND ]  && COMMAND="edit"
+[ -v $TODO_DIR ] && TODO_DIR="$HOME/.todo"
+
+set -eu
+
+# init
+if [ ! -d $TODO_DIR ]; then
+  mkdir $TODO_DIR && cd $TODO_DIR
+fi
+
+# functions
+_generate_path () {
+  echo "$TODO_DIR/$1.md"
+}
+
+_copy_from_latest_file () {
+  dst=$1
+  src=$(_generate_path $(ls $TODO_DIR | sed 's/.md//' | tail -n1))
+  cp $src $dst
+}
+
+_todo_edit () {
+  file_path=$(_generate_path $(date +%F))
+
+  if [ ! -f $file_path ]; then
+    echo 'Copy from the latest file?' 
+    echo -n '[y/n] ' && read yn
+
+    if [ "$yn" = "y" ]; then
+      _copy_from_latest_file $file_path
+    else
+      touch $file_path
+    fi
+  fi
+
+  $EDITOR $file_path
+}
+
+_todo_history () {
+  file_name=$(ls $TODO_DIR | sed 's/.md//' | peco)
+  $EDITOR $(_generate_path $file_name)
+}
+
+_todo_help () {
+  echo 'Help'
+  exit
+}
+
+# commands
+case $COMMAND in
+  edit)       _todo_edit ;;
+  history)    _todo_history ;;
+  *)          _todo_help ;;
+esac
