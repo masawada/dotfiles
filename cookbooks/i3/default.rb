@@ -6,7 +6,13 @@ package 'i3lock'
 
 dotfile '.config/i3'
 
-remote_file '/etc/X11/xorg.conf.d/10-keyboard.conf' do
-  user 'root'
-  source 'files/10-keyboard.conf'
+%w[
+  10-keyboard.conf
+  50-ibm-trackpoint.conf
+  50-kensington-slimblade.conf
+].each do |filename|
+  remote_file "/etc/X11/xorg.conf.d/#{filename}" do
+    user 'root'
+    source "files/#{filename}"
+  end
 end
