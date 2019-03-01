@@ -91,3 +91,8 @@ if s:is_installed('vim-colors-solarized') && s:is_installed('lightline.vim')
     \ 'colorscheme': 'solarized',
     \ }
 endif
+
+if s:is_installed('vim-markdown')
+  "disable folding"
+  let g:vim_markdown_folding_disabled = 1
+endif
