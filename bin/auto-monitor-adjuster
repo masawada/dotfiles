@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# detect monitors and construct options
+monitors=$(xrandr | grep -E '\bconnected\b' | awk '{ print $1 }')
+options=""
+for monitor in $monitors; do
+  case $monitor in
+    "eDP-1") # main monitor
+      options="$options --output eDP-1 --mode 1920x1080" ;;
+    "DP-1-1")
+      options="$options --output DP-1-1 --mode 1920x1080 --left-of eDP-1" ;;
+    "HDMI-2")
+      options="$options --output HDMI-2 --mode 1920x1080 --right-of eDP-1" ;;
+  esac
+done
+
+if [ $(echo "$monitors" | wc -l) = '1' ]; then
+  xrandr --auto
+  xrandr --output eDP-1 --mode 1920x1080
+else
+  # adjust monitors
+  xrandr $options
+fi
+
+# set wallpaper
+$HOME/.fehbg
+
+# restart polybar
+$HOME/.config/polybar/launch.sh 2>&1 /dev/null
