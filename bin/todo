@@ -13,7 +13,7 @@ set -eu
 
 # init
 if [ ! -d $TODO_DIR ]; then
-  mkdir $TODO_DIR && cd $TODO_DIR
+  mkdir $TODO_DIR
 fi
 
 # functions
@@ -45,7 +45,7 @@ _todo_edit () {
 }
 
 _todo_history () {
-  file_name=$(ls $TODO_DIR | sed 's/.md//' | peco)
+  file_name=$(ls $TODO_DIR | tac | sed 's/.md//' | peco)
   $EDITOR $(_generate_path $file_name)
 }
 
