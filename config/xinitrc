@@ -24,5 +24,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+# adjust monitors
+$HOME/.dotfiles/bin/auto-monitor-adjuster
+
 # start desktop
 exec i3
