@@ -15,12 +15,16 @@ URxvt.font: xft:Ricty-Regular:pixelsize=18, \
 URxvt.scrollBar: false
 
 !! perl extention
-URxvt.perl-ext-common: resize-font
+URxvt.perl-ext-common: default,matcher,resize-font
 
 !! font resize keybind
 URxvt.keysym.C-minus: resize-font:smaller
 URxvt.keysym.C-equal: resize-font:bigger
 URxvt.keysym.C-0:     resize-font:reset
+
+!! url launcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
 
 !! solarized dark
 !! http://github.com/altercation/solarized
