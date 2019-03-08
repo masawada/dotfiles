@@ -1,4 +1,5 @@
 # configure appearance
+# $HOME/.monicarc   #monitor calibration
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 # input method settings
