@@ -27,6 +27,11 @@ set -eu
 GHQ_ROOT=$(git config --get-all ghq.root | peco | sed "s|~|$HOME|")
 REPO_PATH="$GHQ_ROOT/${SERVICE_NAME}/${USER_NAME}/${REPO_NAME}"
 
+if [ -e ${REPO_PATH} ]; then
+  echo "repository already exists"
+  exit 1;
+fi
+
 mkdir -p ${REPO_PATH}
 cd ${REPO_PATH}
 git init
