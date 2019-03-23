@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# select wallpapers by ssid
+if ! type feh > /dev/null 2>&1; then
+  exit 1;
+fi
+if ! type iw > /dev/null 2>&1; then
+  exit 1;
+fi
+
+SSID=$(iw wlp3s0 info | grep ssid | awk '{ print $2 }')
+[[ $SSID = '' ]] && SSID='default';
+
+if [ -e "${HOME}/.wallpapers/${SSID}" ]; then
+  WALLPAPER_DIR="${HOME}/.wallpapers/${SSID}"
+else
+  WALLPAPER_DIR="${HOME}/.wallpapers/default"
+fi
+WALLPAPER_PATH="${WALLPAPER_DIR}/$(ls ${WALLPAPER_DIR} | shuf -n 1)"
+[[ ! -f $WALLPAPER_PATH ]] && exit;
+
+feh --bg-fill $WALLPAPER_PATH
