@@ -2,7 +2,7 @@ package 'xorg-server'
 package 'xorg-xinit'
 package 'light'
 package 'i3-wm'
-package 'i3lock'
+yay 'i3lock-color'
 
 dotfile '.config/i3'
 
