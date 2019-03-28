@@ -80,7 +80,7 @@ function peco-find {
   local file_path=''
   local git_search_command=''
 
-  if echo "$current_buffer" | grep -E '^(cd|ls)'; then
+  if echo "$current_buffer" | grep -E '^(cd|ls)' > /dev/null; then
     file_type='d'
     git_search_command='git ls-files $(git rev-parse --show-toplevel) --full-name | while read line; do echo ${line%/*}; done | sort | uniq'
   else
