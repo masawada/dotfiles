@@ -1,0 +1,83 @@
+#!/bin/bash
+
+# a tiny memo organizer
+# Usage:
+#   m <filename> edit the file
+#   m list       show filelist
+#   m push       git push
+#   m pull       git pull
+
+# dependencies
+if ! type peco > /dev/null 2>&1; then
+  echo 'peco not found'
+  exit 1;
+fi
+
+if ! type git > /dev/null 2>&1; then
+  echo 'git not found'
+  exit 1;
+fi
+
+COMMAND=$1
+[ -v $COMMAND ]  && COMMAND="list"
+[ -v $MEMO_DIR ] && MEMO_DIR="$HOME/.memo"
+
+set -eu
+
+# init
+if [ ! -d $MEMO_DIR ]; then
+  mkdir $MEMO_DIR
+  cd $MEMO_DIR;
+  git init
+  cat << EOF > README.md
+m - a tiny memo organizer
+========================
+
+## Usage
+
+\`\`\`
+$ m <filename> # edit the file
+$ m list       # show filelist
+$ m push       # git push
+$ m pull       # git pull
+\`\`\`
+EOF
+  git add README.md && git commit -m 'first commit'
+fi
+
+# functions
+_generate_path () {
+  echo "$MEMO_DIR/$1.md"
+}
+
+_memo_list () {
+  selected=$(ls $MEMO_DIR | sort | sed 's/.md//' | peco)
+  [ "$selected" = "" ] && exit;
+  name=$selected _memo_edit;
+}
+
+_memo_edit () {
+  filepath=$(_generate_path $name)
+  $EDITOR $filepath
+  cd $MEMO_DIR
+  is_changed=$(git status --porcelain | wc -l)
+  [ "$is_changed" = "0" ] && exit
+  git add $filepath && git commit -m "updated ${name}"
+}
+
+_memo_push () {
+  cd $MEMO_DIR
+  git push -u origin master
+}
+
+_memo_pull () {
+  cd $MEMO_DIR
+  git pull
+}
+
+case $COMMAND in 
+  list)   _memo_list ;;
+  push)   _memo_push ;;
+  pull)   _memo_pull ;;
+  *)      name=$COMMAND _memo_edit ;;
+esac
