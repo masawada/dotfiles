@@ -42,6 +42,7 @@ include_cookbook 'fonts'
 include_cookbook 'ibus-skk'
 include_cookbook 'dunst'
 include_cookbook 'feh'
+include_cookbook 'scrot'
 
 # desktop applications
 include_cookbook 'google-chrome'
