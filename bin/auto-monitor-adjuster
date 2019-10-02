@@ -9,6 +9,8 @@ for monitor in $monitors; do
       options="$options --output eDP-1 --mode 1920x1080" ;;
     "DP-1-1")
       options="$options --output DP-1-1 --mode 1920x1080 --left-of eDP-1" ;;
+    "DP-1-2")
+      options="$options --output DP-1-2 --mode 2560x1440 --left-of DP-1-1 --rotate left" ;;
     "HDMI-2")
       options="$options --output HDMI-2 --mode 1920x1080 --right-of eDP-1" ;;
   esac
