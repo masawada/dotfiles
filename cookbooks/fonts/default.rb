@@ -4,6 +4,7 @@
   ttf-hack
   ttf-inconsolata
   ttf-font-awesome
+  noto-fonts
 ].each do |font|
   package font
 end
