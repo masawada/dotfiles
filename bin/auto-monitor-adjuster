@@ -1,27 +1,25 @@
 #!/bin/bash
 
-# detect monitors and construct options
+# detect monitors
 monitors=$(xrandr | grep -E '\bconnected\b' | awk '{ print $1 }')
-options=""
-for monitor in $monitors; do
-  case $monitor in
-    "eDP-1") # main monitor
-      options="$options --output eDP-1 --mode 1920x1080" ;;
-    "DP-1-1")
-      options="$options --output DP-1-1 --mode 1920x1080 --left-of eDP-1" ;;
-    "DP-1-2")
-      options="$options --output DP-1-2 --mode 2560x1440 --left-of DP-1-1 --rotate left" ;;
-    "HDMI-2")
-      options="$options --output HDMI-2 --mode 1920x1080 --right-of eDP-1" ;;
-  esac
-done
 
 if [ $(echo "$monitors" | wc -l) = '1' ]; then
   xrandr --auto
   xrandr --output eDP-1 --mode 1920x1080
 else
   # adjust monitors
-  xrandr $options
+  for monitor in $monitors; do
+    case $monitor in
+      "eDP-1") # main monitor
+         xrandr --output eDP-1 --mode 1920x1080 ;;
+      "DP-1-1")
+         xrandr --output DP-1-1 --mode 1920x1080 --left-of eDP-1 ;;
+      "DP-1-2")
+         xrandr --output DP-1-2 --mode 2560x1440 --left-of DP-1-1 --rotate left ;;
+      "HDMI-2")
+         xrandr --output HDMI-2 --mode 1920x1080 --right-of eDP-1 ;;
+    esac
+  done
 fi
 
 # set wallpaper
