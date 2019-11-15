@@ -19,4 +19,4 @@ fi
 WALLPAPER_PATH="${WALLPAPER_DIR}/$(ls ${WALLPAPER_DIR} | shuf -n 1)"
 [[ ! -f $WALLPAPER_PATH ]] && exit;
 
-feh --bg-fill $WALLPAPER_PATH
+feh --image-bg white --randomize --bg-max ${WALLPAPER_DIR}/*
