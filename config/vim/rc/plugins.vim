@@ -58,8 +58,12 @@ endif
 
 if s:is_installed('ale')
   let g:ale_linters = { 'javascript': ['eslint', 'flow'] }
+  let g:ale_fixers = { 'perl': ['perltidy'] }
+  let g:ale_fix_on_save = 1
   let g:ale_statusline_format = ['E%d', 'W%d', '']
-  let g:ale_perl_perl_executable = 'env PERL5LIB="./local/lib/perl5" perl'
+
+  "Search the .perltidyrc file for starting in the current directory and working upwards
+  let g:ale_perl_perltidy_options = '-pro=.../.perltidyrc'
 
   nnoremap <silent> <C-k> :ALEPreviousWrap<CR>
   nnoremap <silent> <C-j> :ALENextWrap<CR>
