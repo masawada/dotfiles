@@ -1,0 +1,3 @@
+#!/bin/bash
+
+EXPR="$@"; perl -e "print $EXPR" | tee >(xsel -ib); echo;
