@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -eux
+
+new_number=0
+for old_number in $(tmux ls | cut -f 1 -d ':')
+do
+  tmux rename -t $old_number $new_number;
+  let ++new_number
+done
