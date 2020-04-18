@@ -15,7 +15,6 @@ end
 
 %w[
 tlp.service
-tlp-sleep.service
 ].each do |systemd_unit|
   service systemd_unit do
     action [:enable, :start]
