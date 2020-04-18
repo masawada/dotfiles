@@ -21,6 +21,7 @@ include_cookbook 'peco'
 include_cookbook 'docker'
 include_cookbook 'jq'
 include_cookbook 'tree'
+include_cookbook 'github'
 
 # languages
 include_cookbook 'perl'
