@@ -24,3 +24,5 @@ dump.rdb
 
 # Ignore vendor/bundle
 vendor/bundle
+
+Berksfile.lock
