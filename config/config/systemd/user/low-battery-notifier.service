@@ -1,0 +1,6 @@
+[Unit]
+Description=Notify low battery alert
+
+[Service]
+Type=oneshot
+ExecStart=/home/masawada/.dotfiles/bin/low-battery-notifier

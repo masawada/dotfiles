@@ -1,0 +1,8 @@
+[Unit]
+Description=Notify low battery alert timer
+
+[Timer]
+OnCalendar=*-*-* *:*:00
+
+[Install]
+WantedBy=timers.target

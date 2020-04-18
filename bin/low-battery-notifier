@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -eu
+
+urgency=1
+
+for battery in $(ls /sys/class/power_supply/ | grep BAT); do
+  battery_path="/sys/class/power_supply/${battery}"
+  battery_capacity=$(cat ${battery_path}/capacity);
+  battery_status=$(cat ${battery_path}/status);
+
+  if [ ${battery_capacity} -ge 10 ] || [ ${battery_status} = "Charging" ]; then
+    urgency=0
+  fi
+done
+
+[ "${urgency}" = 1 ] && dunstify -u critical 'Low Battery' 'Connect the power cord to this computer.'
+
+exit 0;

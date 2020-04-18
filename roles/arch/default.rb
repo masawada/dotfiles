@@ -50,6 +50,7 @@ include_cookbook 'slack'
 
 # laptop power management
 include_cookbook 'tlp'
+include_cookbook 'low-battery-notifier'
 
 dotfile '.xinitrc'
 dotfile '.Xmodmap'
