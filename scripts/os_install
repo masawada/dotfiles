@@ -6,9 +6,11 @@ if [ -v $NEW_USERNAME ]; then
 fi
 
 # defaults
+[ -v $TARGET_DEVICE ] && TARGET_DEVICE=/dev/sda
 [ -v $SWAPSIZE ] && SWAPSIZE=48G
 [ -v $NEW_HOSTNAME ] && NEW_HOSTNAME=sibelius
 
+echo 'TARGET_DEVICE: ' $TARGET_DEVICE
 echo 'SWAPSIZE: ' $SWAPSIZE
 echo 'NEW_HOSTNAME: ' $NEW_HOSTNAME
 echo 'NEW_USERNAME: ' $NEW_USERNAME
@@ -17,29 +19,44 @@ echo 'All partitions will be removed.'
 read -p 'Are you sure to continue the installation? [y/n]: ' YN_CONTINUE
 [ "$YN_CONTINUE" != "y" ] && exit
 
+case "$TARGET_DEVICE" in
+  /dev/sd*)
+    DEVICE_NAME=$(basename $TARGET_DEVICE)
+    UEFI_PARTITION="${TARGET_DEVICE}1"
+    BOOT_PARTITION="${TARGET_DEVICE}2"
+    ROOT_PARTITION="${TARGET_DEVICE}3"
+    ;;
+  /dev/nvme*)
+    DEVICE_NAME=$(basename $TARGET_DEVICE)
+    UEFI_PARTITION="${TARGET_DEVICE}p1"
+    BOOT_PARTITION="${TARGET_DEVICE}p2"
+    ROOT_PARTITION="${TARGET_DEVICE}p3"
+    ;;
+esac
+
 set -eux
 
 # Update the system clock
 timedatectl set-ntp true
 
 # Partitioning
-cat /proc/partitions | grep -E 'sda.+' | awk '{ print $2 }' | xargs -I{} parted -s /dev/sda rm {}
-parted -s /dev/sda mklabel gpt
-parted -s /dev/sda mkpart primary fat32 1MiB 256MiB 
-parted -s /dev/sda set 1 boot on
-parted -s /dev/sda set 1 esp on
-parted -s /dev/sda mkpart primary 256MiB 512MiB
-parted -s /dev/sda mkpart primary 512MiB 100%
+cat /proc/partitions | grep -E "${DEVICE_NAME}.+" | awk '{ print $2 }' | xargs -I{} parted -s $TARGET_DEVICE rm {}
+parted -s $TARGET_DEVICE mklabel gpt
+parted -s $TARGET_DEVICE mkpart primary fat32 1MiB 256MiB
+parted -s $TARGET_DEVICE set 1 boot on
+parted -s $TARGET_DEVICE set 1 esp on
+parted -s $TARGET_DEVICE mkpart primary 256MiB 512MiB
+parted -s $TARGET_DEVICE mkpart primary 512MiB 100%
 
 # Filesystems
-mkfs.vfat -F32 /dev/sda1
+mkfs.vfat -F32 $UEFI_PARTITION
 
-cryptsetup luksFormat /dev/sda2
-cryptsetup luksOpen /dev/sda2 cryptboot
+cryptsetup luksFormat $BOOT_PARTITION
+cryptsetup luksOpen $BOOT_PARTITION cryptboot
 mkfs.ext4 /dev/mapper/cryptboot
 
-cryptsetup luksFormat /dev/sda3
-cryptsetup luksOpen /dev/sda3 lvm
+cryptsetup luksFormat $ROOT_PARTITION
+cryptsetup luksOpen $ROOT_PARTITION lvm
 pvcreate /dev/mapper/lvm
 vgcreate arch /dev/mapper/lvm
 lvcreate -L $SWAPSIZE arch -n swap
@@ -51,7 +68,7 @@ mount /dev/mapper/arch-root /mnt
 mkdir /mnt/boot
 mount /dev/mapper/cryptboot /mnt/boot
 mkdir /mnt/boot/efi
-mount /dev/sda1 /mnt/boot/efi
+mount $UEFI_PARTITION /mnt/boot/efi
 
 swapon /dev/mapper/arch-swap
 
@@ -101,9 +118,9 @@ sed -i 's/^HOOKS=.*/HOOKS="base udev autodetect modconf block keyboard encrypt l
 mkinitcpio -p linux
 
 dd bs=512 count=8 if=/dev/urandom of=/crypto_keyfile.bin
-cryptsetup luksAddKey /dev/sda2 /crypto_keyfile.bin
+cryptsetup luksAddKey $BOOT_PARTITION /crypto_keyfile.bin
 chmod 000 /crypto_keyfile.bin
-echo "cryptboot /dev/sda2 /crypto_keyfile.bin luks" >> /etc/crypttab
+echo "cryptboot $BOOT_PARTITION /crypto_keyfile.bin luks" >> /etc/crypttab
 
 # Workaround
 # https://bugs.archlinux.org/task/61040
@@ -111,7 +128,7 @@ echo "cryptboot /dev/sda2 /crypto_keyfile.bin luks" >> /etc/crypttab
 ln -s /hostlvm /run/lvm
 
 echo GRUB_ENABLE_CRYPTODISK=y >> /etc/default/grub
-ROOTUUID=\$(blkid /dev/sda3 | awk '{print \$2}' | cut -d '"' -f2)
+ROOTUUID=\$(blkid $ROOT_PARTITION | awk '{print \$2}' | cut -d '"' -f2)
 sed -i "s/^GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX=\"cryptdevice=UUID="\$ROOTUUID":lvm:allow-discards root=\/dev\/mapper\/arch-root resume=\/dev\/mapper\/arch-swap\"/" /etc/default/grub
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
