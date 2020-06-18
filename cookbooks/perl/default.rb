@@ -1,9 +1,9 @@
 node.reverse_merge!(
   plenv: {
     user:     node[:user],
-    global:   '5.28.1',
+    global:   '5.30.3',
     versions: %w[
-      5.28.1
+      5.30.3
     ],
   },
 )
