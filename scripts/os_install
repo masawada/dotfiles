@@ -51,11 +51,11 @@ parted -s $TARGET_DEVICE mkpart primary 512MiB 100%
 # Filesystems
 mkfs.vfat -F32 $UEFI_PARTITION
 
-cryptsetup luksFormat $BOOT_PARTITION
+cryptsetup luksFormat --type luks1 $BOOT_PARTITION
 cryptsetup luksOpen $BOOT_PARTITION cryptboot
 mkfs.ext4 /dev/mapper/cryptboot
 
-cryptsetup luksFormat $ROOT_PARTITION
+cryptsetup luksFormat --type luks1 $ROOT_PARTITION
 cryptsetup luksOpen $ROOT_PARTITION lvm
 pvcreate /dev/mapper/lvm
 vgcreate arch /dev/mapper/lvm
