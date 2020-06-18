@@ -2,16 +2,16 @@
 
 set -eu
 
-mitamae_version="1.7.0"
+mitamae_version="1.11.7"
 
 case "$(uname)" in
   "Linux")
     mitamae_bin="mitamae-x86_64-linux"
-    mitamae_sha256="808f028a8de5f2ed2d52eea8c0f52f7ebc8d8e5a8960adb6906fa0b943b1e3da"
+    mitamae_sha256="4e846c132b15749d0a826f01c52618fa7c04ed1514e074cd0d108e5810188458"
     ;;
   "Darwin")
     mitamae_bin="mitamae-x86_64-darwin"
-    mitamae_sha256="23c761264d55195d1f4263a1ac90c76992f9af00bf698c4eb1dfa969912e5d71"
+    mitamae_sha256="60e689bc81daca1a5a1b982c345f839bbf7d4b240f69d98b2563e7affa837491"
     ;;
   *)
     echo "Error: unexpected uname"
