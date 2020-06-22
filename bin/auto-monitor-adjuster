@@ -17,7 +17,7 @@ else
       "DP-1-2")
          xrandr --output DP-1-2 --mode 2560x1440 --left-of DP-1-1 --rotate left ;;
       "HDMI-2")
-         xrandr --output HDMI-2 --mode 2560x1440 --right-of eDP-1 ;;
+         xrandr --output HDMI-2 --mode 2560x1440 --left-of eDP-1 ;;
     esac
   done
 fi
