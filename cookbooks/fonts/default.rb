@@ -20,7 +20,7 @@ end
 fonts_path = File.join(ENV['HOME'], '.local', 'share', 'fonts')
 directory fonts_path do
   user node[:user]
-  not_if { File.exist?(font_path) }
+  not_if { File.exist?(fonts_path) }
 end
 
 # workaround for freetype2
