@@ -17,6 +17,12 @@ end
   yay font
 end
 
+fonts_path = File.join(ENV['HOME'], '.local', 'share', 'fonts')
+directory fonts_path do
+  user node[:user]
+  not_if { File.exist?(font_path) }
+end
+
 # workaround for freetype2
 # https://masawada.hatenablog.jp/entry/2019/05/07/114349
 link File.join(ENV['HOME'], '.local', 'share', 'fonts', 'siji.bdf') do
