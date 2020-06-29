@@ -13,6 +13,7 @@ dotfile '.config/i3'
 ].each do |filename|
   remote_file "/etc/X11/xorg.conf.d/#{filename}" do
     user 'root'
+    mode '644'
     source "files/#{filename}"
   end
 end
