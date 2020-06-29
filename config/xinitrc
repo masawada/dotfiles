@@ -11,7 +11,7 @@ ibus-daemon -drx
 picom -b --config $HOME/.config/picom/picom.conf
 
 # disable trackpoint center button and touchpad
-if [ $(lsmod | grep thinkpad | wc -l ) -gt 1 ]; then
+if [ $(lsmod | grep thinkpad | wc -l ) -gt 0 ]; then
   xinput --disable $(xinput list --id-only "$(xinput list --name-only | grep -i Synaptics)")
 fi
 
