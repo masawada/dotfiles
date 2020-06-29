@@ -8,7 +8,7 @@ export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 ibus-daemon -drx
 
-compton -b --config $HOME/.config/compton/compton.conf
+picom -b --config $HOME/.config/picom/picom.conf
 
 # disable trackpoint center button and touchpad
 if [ $(lsmod | grep thinkpad | wc -l ) -gt 1 ]; then
