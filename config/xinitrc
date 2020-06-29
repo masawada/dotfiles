@@ -11,7 +11,9 @@ ibus-daemon -drx
 compton -b --config $HOME/.config/compton/compton.conf
 
 # disable trackpoint center button and touchpad
-xinput --disable $(xinput list --id-only "$(xinput list --name-only | grep -i Synaptics)")
+if [ $(lsmod | grep thinkpad | wc -l ) -gt 1 ]; then
+  xinput --disable $(xinput list --id-only "$(xinput list --name-only | grep -i Synaptics)")
+fi
 
 # typematic delay and rate
 xset r rate 150 40
