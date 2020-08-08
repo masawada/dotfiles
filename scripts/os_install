@@ -87,7 +87,7 @@ Server = https://mirrors.cat.net/archlinux/\$repo/os/\$arch
 EOF
 
 # Install the base system
-pacstrap -i /mnt base base-devel linux linux-firmware lvm2 dhcpcd dialog wireless_tools wpa_supplicant grub efibootmgr openssh git
+pacstrap -i /mnt base base-devel linux linux-firmware lvm2 dhcpcd dialog iw wpa_supplicant grub efibootmgr openssh git
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
 # Workaround
