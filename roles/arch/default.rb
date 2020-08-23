@@ -24,6 +24,7 @@ include_cookbook 'tree'
 include_cookbook 'xclip'
 include_cookbook 'github'
 include_cookbook 'percona-toolkit'
+include_cookbook 'android'
 
 # languages
 include_cookbook 'perl'
