@@ -4,7 +4,7 @@ killall -q polybar
 
 while pgrep -u $UID -x polybar > /dev/null; do sleep 1; done
 
-CONFIG_PATH=$HOME/.config/polybar/config-$(hostname)
+CONFIG_PATH=$HOME/.config/polybar/config-$(cat /etc/hostname)
 [ ! -e $CONFIG_PATH ] && CONFIG_PATH=$HOME/.config/polybar/config
 
 if type xrandr > /dev/null; then
