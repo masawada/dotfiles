@@ -17,3 +17,11 @@ dotfile '.config/i3'
     source "files/#{filename}"
   end
 end
+
+# > Note: you must be in the `video` group.
+# https://github.com/haikarainen/light#debianubuntu
+user = node[:user]
+execute 'add user to video group' do
+  not_if "getent group video | grep #{user}"
+  command "usermod #{user} -aG video"
+end
