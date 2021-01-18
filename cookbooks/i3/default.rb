@@ -10,6 +10,7 @@ dotfile '.config/i3'
   10-keyboard.conf
   50-ibm-trackpoint.conf
   50-kensington-slimblade.conf
+  50-raspberry-pi-bluetooth-receiver.conf
 ].each do |filename|
   remote_file "/etc/X11/xorg.conf.d/#{filename}" do
     user 'root'
