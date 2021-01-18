@@ -19,6 +19,7 @@ Plug 'w0rp/ale'
 Plug 'mattn/emmet-vim',              { 'for': 'html' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'js' }
 Plug 'mxw/vim-jsx',                  { 'for': 'js' }
+Plug 'maralla/completor-typescript', { 'for': 'typescript' }
 Plug 'motemen/hatena-vim',           { 'for': 'hatena' }
 Plug 'elzr/vim-json',                { 'for': 'json' }
 Plug 'plasticboy/vim-markdown',      { 'for': 'markdown' }
