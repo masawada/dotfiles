@@ -32,3 +32,6 @@
 
 [github]
     user = masawada
+
+[init]
+	defaultBranch = main
