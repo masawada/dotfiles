@@ -7,9 +7,10 @@ directory gopath do
 end
 
 %w[
+  github.com/itchyny/gojq/cmd/gojq
+  github.com/k0kubun/pp
   github.com/motemen/gore
   github.com/nsf/gocode
-  github.com/k0kubun/pp
   golang.org/x/tools/cmd/godoc
 ].each do |repo|
   execute "GOPATH=#{gopath} go get -u #{repo}" do

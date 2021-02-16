@@ -8,7 +8,8 @@ else
   alias ls="ls -F --color"
 fi
 
-whence vim > /dev/null 2>&1 && alias vi="vim"
+whence vim  > /dev/null 2>&1 && alias vi="vim"
+whence gojq > /dev/null 2>&1 && alias jq="gojq"
 
 # Hokan
 autoload -Uz compinit && compinit
