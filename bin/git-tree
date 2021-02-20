@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+if ! type tree > /dev/null 2>&1; then
+  echo 'command not found: tree'
+  exit 1;
+fi
+
+git ls-files | tree --fromfile=. $@
