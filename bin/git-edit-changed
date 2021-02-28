@@ -5,5 +5,5 @@ filepath=$({\
   git diff --name-only HEAD; \
 } | sort -u | peco)
 if [ ${#filepath} -ne 0 ]; then
-  $EDITOR $(git rev-parse --show-toplevel)/${filepath}
+  cd $(git rev-parse --show-toplevel) && $EDITOR ${filepath}
 fi
