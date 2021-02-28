@@ -1,9 +1,9 @@
 #!/bin/bash
 
-path=$({\
-  git diff --name-only HEAD; \
+filepath=$({\
   git ls-files $(git rev-parse --show-toplevel) --exclude-standard --others --full-name; \
-} | peco)
-if [ ${#path} -ne 0 ]; then
-  vim $(git rev-parse --show-toplevel)/${path}
+  git diff --name-only HEAD; \
+} | sort -u | peco)
+if [ ${#filepath} -ne 0 ]; then
+  $EDITOR $(git rev-parse --show-toplevel)/${filepath}
 fi
