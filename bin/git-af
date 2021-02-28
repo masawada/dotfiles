@@ -6,7 +6,7 @@ FILE_PATH=$2
 [ -v $BRANCH ] && BRANCH=$(git branch -l | grep -Ev '^\*' | awk '{ print $1 }' | peco)
 [ -v $BRANCH ] && echo 'branch not found' && exit;
 
-[ -v $FILE_PATH ] && FILE_PATH=$(git ls-files | peco)
+[ -v $FILE_PATH ] && FILE_PATH=$(git ls-files $(git rev-parse --show-toplevel) | peco)
 [ -v $FILE_PATH ] && echo 'file_path not found' && exit;
 
 git show $BRANCH:$FILE_PATH | vim -c "doautocmd BufRead $(basename $FILE_PATH)" -R -
