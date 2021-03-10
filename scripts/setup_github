@@ -6,15 +6,11 @@ set -eu
 
 GITHUB_PUBKEY=`cat $HOME/.ssh/id_rsa.pub`
 
-read    -p 'GitHub Username: ' GITHUB_USERNAME
-read -s -p 'GitHub Password: ' GITHUB_PASSWORD
-echo
-read -s -p 'GitHub OTP: '      GITHUB_OTP
+read -s -p 'GitHub Personal Access Token: ' GITHUB_PAT
 echo
 
 curl -XPOST \
   -H "Content-Type: application/json" \
-  -H "X-GitHub-OTP: $GITHUB_OTP" \
-  --basic -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" \
+  -H "Authorization: token $GITHUB_PAT" \
   -d "{\"title\": \"$USER@$HOSTNAME\", \"key\": \"$GITHUB_PUBKEY\"}" \
   "https://api.github.com/user/keys"
