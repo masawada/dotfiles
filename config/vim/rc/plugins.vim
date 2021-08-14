@@ -16,6 +16,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'SirVer/ultisnips'
 Plug 'w0rp/ale'
 
+Plug 'mattn/vim-goimports',          { 'for': 'go' }
 Plug 'mattn/emmet-vim',              { 'for': 'html' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'js' }
 Plug 'mxw/vim-jsx',                  { 'for': 'js' }
@@ -100,4 +101,8 @@ endif
 if s:is_installed('vim-markdown')
   "disable folding"
   let g:vim_markdown_folding_disabled = 1
+endif
+
+if s:is_installed('vim-goimports')
+  let g:goimports = 1
 endif
