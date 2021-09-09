@@ -6,6 +6,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'cohama/lexima.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'leafgarland/typescript-vim'
 Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-surround'
@@ -105,4 +106,9 @@ endif
 
 if s:is_installed('vim-goimports')
   let g:goimports = 1
+endif
+
+if s:is_installed('vim-easy-align')
+  nmap ga <Plug>(EasyAlign)
+  xmap ga <Plug>(EasyAlign)
 endif
