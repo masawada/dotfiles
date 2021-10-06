@@ -13,6 +13,7 @@ include_cookbook 'ssh-agent'
 # tools
 include_cookbook 'dhclient'
 include_cookbook 'netctl'
+include_cookbook 'inetutils'
 include_cookbook 'dnsmasq'
 include_cookbook 'dnsutils'
 include_cookbook 'lsof'
