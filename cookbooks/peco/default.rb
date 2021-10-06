@@ -7,7 +7,7 @@ end
 
 github_binary 'peco' do
   repository 'peco/peco'
-  version 'v0.5.7'
+  version 'v0.5.10'
   archive archive_name
 end
 
