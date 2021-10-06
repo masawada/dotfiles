@@ -51,6 +51,7 @@ include_cookbook 'scrot'
 # desktop applications
 include_cookbook 'google-chrome'
 include_cookbook 'slack'
+include_cookbook '1password'
 
 # laptop power management
 include_cookbook 'tlp'
