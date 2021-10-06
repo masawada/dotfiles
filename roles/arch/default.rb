@@ -27,6 +27,8 @@ include_cookbook 'aws'
 include_cookbook 'percona-toolkit'
 include_cookbook 'android'
 include_cookbook 'whois'
+include_cookbook 'gnome-keyring'
+include_cookbook 'envchain'
 
 # languages
 include_cookbook 'perl'
