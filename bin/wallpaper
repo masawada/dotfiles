@@ -8,7 +8,12 @@ if ! type iw > /dev/null 2>&1; then
   exit 1;
 fi
 
-SSID=$(iw wlp3s0 info | grep ssid | awk '{ print $2 }')
+case `hostname` in
+  "sibelius") NIC="wlp9s0" ;;
+  "*") NIC="wlp3s0" ;;
+esac
+
+SSID=$(iw ${NIC} info | grep ssid | awk '{ print $2 }')
 [[ $SSID = '' ]] && SSID='default';
 
 if [ -e "${HOME}/.wallpapers/${SSID}" ]; then
