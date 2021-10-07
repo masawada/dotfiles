@@ -1,0 +1,2 @@
+#compdef git-tree
+#description show git ls-files in the tree view (tree required)
