@@ -12,6 +12,7 @@ whence vim  > /dev/null 2>&1 && alias vi="vim"
 whence gojq > /dev/null 2>&1 && alias jq="gojq"
 
 # Hokan
+fpath=($HOME/.zsh/completion $fpath)
 autoload -Uz compinit && compinit
 setopt auto_pushd
 setopt pushd_ignore_dups

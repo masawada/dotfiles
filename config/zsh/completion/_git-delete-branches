@@ -1,0 +1,2 @@
+#compdef git-delete-branches
+#description Delete selected branches (peco required)
