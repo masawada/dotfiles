@@ -9,6 +9,7 @@ dotfile '.config/i3'
 %w[
   10-keyboard.conf
   50-ibm-trackpoint.conf
+  50-elan-trackpoint.conf
   50-kensington-slimblade.conf
   50-raspberry-pi-bluetooth-receiver.conf
 ].each do |filename|
