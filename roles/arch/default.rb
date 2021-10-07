@@ -29,6 +29,7 @@ include_cookbook 'android'
 include_cookbook 'whois'
 include_cookbook 'gnome-keyring'
 include_cookbook 'envchain'
+include_cookbook 'gdisk'
 
 # languages
 include_cookbook 'perl'
