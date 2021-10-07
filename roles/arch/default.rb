@@ -30,6 +30,7 @@ include_cookbook 'whois'
 include_cookbook 'gnome-keyring'
 include_cookbook 'envchain'
 include_cookbook 'gdisk'
+include_cookbook 'dosfstools'
 
 # languages
 include_cookbook 'perl'
