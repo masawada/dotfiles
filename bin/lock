@@ -18,16 +18,4 @@ loginbox=00000066
 font="Ricty:style=Regular"
 timefont="Inconsolata:style=Regular"
 
-i3lock \
-  -i "$HOME/.wallpapers/default/mtfuji.jpg" \
-  --timepos='x+110:h-70' \
-  --datepos='x+43:h-45' \
-  --clock --date-align 1 --datestr "Type password to unlock..." \
-  --insidecolor=$insidecolor --ringcolor=$ringcolor --line-uses-inside \
-  --keyhlcolor=$keyhlcolor --bshlcolor=$bshlcolor --separatorcolor=$separatorcolor \
-  --insidevercolor=$insidevercolor --insidewrongcolor=$insidewrongcolor \
-  --ringvercolor=$ringvercolor --ringwrongcolor=$ringwrongcolor --indpos='x+280:h-70' \
-  --radius=20 --ring-width=4 --veriftext='' --wrongtext='' \
-  --verifcolor="$verifcolor" --timecolor="$timecolor" --datecolor="$datecolor" \
-  --time-font="$timefont" --date-font="$font" --layout-font="$font" --verif-font="$font" --wrong-font="$font" \
-  --noinputtext='' --force-clock $lockargs
+i3lock
