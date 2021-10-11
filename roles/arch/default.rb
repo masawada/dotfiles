@@ -58,6 +58,7 @@ include_cookbook 'scrot'
 include_cookbook 'google-chrome'
 include_cookbook 'slack'
 include_cookbook '1password'
+include_cookbook 'vlc'
 
 # laptop power management
 include_cookbook 'tlp'
