@@ -31,6 +31,7 @@ include_cookbook 'gnome-keyring'
 include_cookbook 'envchain'
 include_cookbook 'gdisk'
 include_cookbook 'dosfstools'
+include_cookbook 'mariadb'
 
 # languages
 include_cookbook 'perl'
