@@ -32,6 +32,7 @@ include_cookbook 'envchain'
 include_cookbook 'gdisk'
 include_cookbook 'dosfstools'
 include_cookbook 'mariadb'
+include_cookbook 'redis'
 
 # languages
 include_cookbook 'perl'
