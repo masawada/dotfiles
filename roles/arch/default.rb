@@ -11,6 +11,7 @@ include_cookbook 'tmux'
 include_cookbook 'ssh-agent'
 
 # tools
+include_cookbook 'ntp'
 include_cookbook 'dhclient'
 include_cookbook 'netctl'
 include_cookbook 'inetutils'
