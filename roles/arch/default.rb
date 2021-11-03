@@ -34,6 +34,7 @@ include_cookbook 'gdisk'
 include_cookbook 'dosfstools'
 include_cookbook 'mariadb'
 include_cookbook 'redis'
+include_cookbook 'imagemagick'
 
 # languages
 include_cookbook 'perl'
