@@ -63,6 +63,7 @@ include_cookbook 'google-chrome'
 include_cookbook 'slack'
 include_cookbook '1password'
 include_cookbook 'vlc'
+include_cookbook 'obs-studio'
 include_cookbook 'audacity'
 include_cookbook 'libreoffice'
 
