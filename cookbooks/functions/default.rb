@@ -1,10 +1,10 @@
 package 'unzip'
 
 define :github_binary, repository: nil, version: nil, archive: nil do
-  name       = params[:name]
-  version    = params[:version]
-  repository = params[:repository]
-  archive    = params[:archive]
+  name        = params[:name]
+  version     = params[:version]
+  repository  = params[:repository]
+  archive     = params[:archive]
 
   bin = "/usr/local/bin/#{name}"
   url = "https://github.com/#{repository}/releases/download/#{version}/#{archive}"
@@ -18,7 +18,8 @@ define :github_binary, repository: nil, version: nil, archive: nil do
     extract   = "unzip -o /tmp/#{archive} -d #{extracted}"
   elsif archive.end_with?('.tar.gz')
     extracted = File.join('/tmp', archive.sub(/\.tar\.gz$/, ''))
-    extract   = "tar zxvf /tmp/#{archive}"
+    extract   = "tar zxvf /tmp/#{archive} -C #{extracted}"
+    directory extracted
   else
     raise
   end
