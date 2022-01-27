@@ -35,6 +35,7 @@ include_cookbook 'dosfstools'
 include_cookbook 'mariadb'
 include_cookbook 'redis'
 include_cookbook 'imagemagick'
+include_cookbook 'ecspresso'
 
 # languages
 include_cookbook 'perl'
