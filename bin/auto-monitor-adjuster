@@ -13,7 +13,7 @@ case `hostname` in
     for monitor in $monitors; do
       case $monitor in
         "eDP-1") # main monitor
-           xrandr --output eDP-1 --mode 2560x1440 ;;
+           xrandr --output eDP-1 --mode 1920x1080 ;;
         "DP-2-1")
            xrandr --output DP-2-1 --mode 2560x1440 --left-of eDP-1 ;;
         "DP-2-2")
