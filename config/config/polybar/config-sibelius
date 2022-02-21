@@ -22,7 +22,7 @@ module-margin-right = 1
 
 modules-left   = i3
 modules-center = xwindow
-modules-right  = volume wlan battery date
+modules-right  = volume wlan front-battery rear-battery date
 
 font-0 = cherry:antialias=false:size=12;2
 font-1 = Siji:antialias=false:size=12;2
@@ -44,17 +44,23 @@ format-muted  = %{T2}%{T-} muted
 
 [module/wlan]
 type = internal/network
-interface = wlp9s0
+interface = wlp3s0
 interval = 3.0
 
 label-connected = %{T2}%{T-} %essid%
 label-disconnected = %{T2}%{T-} %ifname% disconnected
 
-[module/battery]
+[module/front-battery]
 type = internal/battery
 battery = BAT0
-label-charging    = %{T2}%{T-} %percentage%%
-label-discharging = %{T2}%{T-} %percentage%%
+label-charging    = %{T2}%{T-} %percentage%%(F)
+label-discharging = %{T2}%{T-} %percentage%%(F)
+
+[module/rear-battery]
+type = internal/battery
+battery = BAT1
+label-charging    = %{T2}%{T-} %percentage%%(R)
+label-discharging = %{T2}%{T-} %percentage%%(R)
 
 [module/date]
 type  = internal/date
