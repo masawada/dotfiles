@@ -56,7 +56,7 @@ endif
 
 if s:is_installed('open-browser.vim') && s:is_installed('open-browser-github.vim')
   nnoremap <silent> <C-g> :OpenGithubFile<CR>
-  vnoremap <silent> <C-g> :'<,'>OpenGithubFile<CR>
+  vnoremap <silent> <C-g> :OpenGithubFile<CR>
 endif
 
 if s:is_installed('ale')
