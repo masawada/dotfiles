@@ -7,13 +7,12 @@ directory gopath do
 end
 
 %w[
-  github.com/itchyny/gojq/cmd/gojq
-  github.com/k0kubun/pp
-  github.com/x-motemen/gore
-  github.com/nsf/gocode
-  golang.org/x/tools/cmd/godoc
+  github.com/itchyny/gojq/cmd/gojq@latest
+  github.com/x-motemen/gore/cmd/gore@latest
+  github.com/mdempsky/gocode@latest
+  golang.org/x/tools/cmd/godoc@latest
 ].each do |repo|
-  execute "GOPATH=#{gopath} go get -u #{repo}" do
+  execute "GOPATH=#{gopath} go install #{repo}" do
     not_if { File.exist?(File.join(gopath, 'src', repo)) }
     user node[:user]
   end
