@@ -6,6 +6,7 @@ node.reverse_merge!(
       12.18.1
       14.4.0
     ],
+    scheme: 'https',
   },
 )
 

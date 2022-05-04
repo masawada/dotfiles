@@ -5,6 +5,7 @@ node.reverse_merge!(
     versions: %w[
       5.30.3
     ],
+    scheme: 'https',
   },
 )
 
