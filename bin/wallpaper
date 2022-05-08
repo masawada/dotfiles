@@ -9,7 +9,7 @@ if ! type iw > /dev/null 2>&1; then
 fi
 
 case `hostname` in
-  "sibelius") NIC="wlp9s0" ;;
+  "sibelius") NIC="wlp3s0" ;;
   "*") NIC="wlp3s0" ;;
 esac
 
