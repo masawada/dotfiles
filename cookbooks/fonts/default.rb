@@ -5,6 +5,7 @@
   ttf-inconsolata
   ttf-font-awesome
   noto-fonts
+  noto-fonts-emoji
 ].each do |font|
   package font
 end
