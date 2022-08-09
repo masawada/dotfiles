@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -eu
+
+# Usage:
+# envchain *** env aws-switch-role PROFILE_NAME
+
+TARGET_PROFILE="$1"
+
+ROLE_ARN=$(aws configure get ${TARGET_PROFILE}.role_arn)
+MFA_SERIAL=$(aws configure get ${TARGET_PROFILE}.mfa_serial)
+REGION=$(aws configure get ${TARGET_PROFILE}.region)
+SESSION_NAME="${TARGET_PROFILE}-session"
+
+echo -n "Enter MFA code for ${MFA_SERIAL}: "
+read -s token_code
+echo ""
+
+RESULT_JSON=$(aws sts assume-role \
+  --role-arn $ROLE_ARN \
+  --role-session-name $SESSION_NAME \
+  --serial-number $MFA_SERIAL \
+  --token-code $token_code)
+
+env AWS_PROFILE=$TARGET_PROFILE \
+    AWS_DEFAULT_REGION=$REGION \
+    AWS_ACCESS_KEY_ID=$(echo $RESULT_JSON | gojq -r .Credentials.AccessKeyId) \
+    AWS_SECRET_ACCESS_KEY=$(echo $RESULT_JSON | gojq -r .Credentials.SecretAccessKey) \
+    AWS_SESSION_TOKEN=$(echo $RESULT_JSON | gojq -r .Credentials.SessionToken) \
+    $SHELL

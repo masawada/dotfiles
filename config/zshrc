@@ -29,7 +29,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Prompt
 autoload -Uz colors && colors
-PROMPT="%{${fg[yellow]}%}%(!.#.$) %{$reset_color%}"
+PROMPT="%{${fg[yellow]}%}%(!.#.$) $([[ -n $AWS_PROFILE ]] && echo "($AWS_PROFILE) ")%{$reset_color%}"
 PROMPT2="%{${fg[yellow]}%}%_> %{$reset_color%}"
 SPROMPT="%r is correct? [n,y,a,e]: "
 
