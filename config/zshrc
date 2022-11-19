@@ -3,9 +3,9 @@ alias cap="bundle exec cap"
 alias prt="carton exec prt"
 
 if whence gls > /dev/null; then
-  alias ls="gls -F --color"
+  alias ls="gls -F --color --group-directories-first"
 else
-  alias ls="ls -F --color"
+  alias ls="ls -F --color --group-directories-first"
 fi
 
 whence vim  > /dev/null 2>&1 && alias vi="vim"
