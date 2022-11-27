@@ -1,1 +1,1 @@
-package 'aws-cli'
+package 'aws-cli-v2'
