@@ -1,0 +1,7 @@
+#!/bin/bash
+
+TARGET_PROFILE="$(aws configure list-profiles | peco)"
+
+aws sso --profile "$TARGET_PROFILE" login
+env AWS_PROFILE="$TARGET_PROFILE" $SHELL
+aws sso logout
