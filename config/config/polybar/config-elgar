@@ -1,0 +1,65 @@
+[colors]
+background  = #ccf0f0f0
+foreground  = #333
+bordercolor = #ccc
+
+[bar/top]
+monitor = ${env:MONITOR:}
+width  = 100%
+height = 24
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-bottom-size = 1
+border-bottom-color = ${colors.bordercolor}
+
+padding-left  = 0
+padding-right = 2
+
+module-margin-left  = 1
+module-margin-right = 1
+
+modules-left   = i3
+modules-center = xwindow
+modules-right  = volume wlan battery date
+
+font-0 = cherry:antialias=false:size=12;2
+font-1 = Siji:antialias=false:size=12;2
+font-2 = Ricty:antialias=true:size=10;3
+
+[module/i3]
+type = internal/i3
+
+[module/xwindow]
+type   = internal/xwindow
+format = %{T3}<label>%{T-}
+label-maxlen = 60
+
+[module/volume]
+type = internal/pulseaudio
+
+format-volume = %{T2}%{T-} <label-volume>
+format-muted  = %{T2}%{T-} muted
+
+[module/wlan]
+type = internal/network
+interface = wlp0s20f3
+interval = 3.0
+
+label-connected = %{T2}%{T-} %essid%
+label-disconnected = %{T2}%{T-} %ifname% disconnected
+
+[module/battery]
+type = internal/battery
+battery = CMB1
+label-charging    = %{T2}%{T-} %percentage%%(F)
+label-discharging = %{T2}%{T-} %percentage%%(F)
+
+[module/date]
+type  = internal/date
+date = %{T2}%{T-} %a, %b %d %H:%M:%S
+date-alt = %{T2}%{T-} %Y-%m-%d %H:%M:%S
+interval = 1
+
+; vim:ft=cfg
