@@ -51,7 +51,6 @@ setopt hist_no_store
 whence plenv  > /dev/null 2>&1 && eval "$(plenv init - zsh)"
 whence rbenv  > /dev/null 2>&1 && eval "$(rbenv init - zsh)"
 whence nodenv > /dev/null 2>&1 && eval "$(nodenv init - zsh)"
-whence direnv > /dev/null 2>&1 && eval "$(direnv hook zsh)"
 
 # Default Permission
 umask 022
