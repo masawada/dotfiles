@@ -2,28 +2,28 @@ let g:plugins_dir = expand($HOME.'/.vim/plugins')
 
 call plug#begin(g:plugins_dir)
 
+Plug 'SirVer/ultisnips'
 Plug 'altercation/vim-colors-solarized'
 Plug 'cohama/lexima.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'leafgarland/typescript-vim'
-Plug 'thinca/vim-quickrun'
-Plug 'tpope/vim-surround'
-Plug 'tyru/open-browser.vim'
-Plug 'tyru/open-browser-github.vim'
 Plug 'maralla/completor.vim',        { 'do': 'make js' }
 Plug 'nanotech/jellybeans.vim'
-Plug 'SirVer/ultisnips'
+Plug 'thinca/vim-quickrun'
+Plug 'tpope/vim-surround'
+Plug 'tyru/open-browser-github.vim'
+Plug 'tyru/open-browser.vim'
 Plug 'w0rp/ale'
 
-Plug 'mattn/vim-goimports',          { 'for': 'go' }
-Plug 'mattn/emmet-vim',              { 'for': 'html' }
-Plug 'jelera/vim-javascript-syntax', { 'for': 'js' }
-Plug 'mxw/vim-jsx',                  { 'for': 'js' }
-Plug 'maralla/completor-typescript', { 'for': 'typescript' }
-Plug 'motemen/hatena-vim',           { 'for': 'hatena' }
 Plug 'elzr/vim-json',                { 'for': 'json' }
+Plug 'jelera/vim-javascript-syntax', { 'for': 'js' }
+Plug 'maralla/completor-typescript', { 'for': 'typescript' }
+Plug 'mattn/emmet-vim',              { 'for': 'html' }
+Plug 'mattn/vim-goimports',          { 'for': 'go' }
+Plug 'motemen/hatena-vim',           { 'for': 'hatena' }
+Plug 'mxw/vim-jsx',                  { 'for': 'js' }
 Plug 'plasticboy/vim-markdown',      { 'for': 'markdown' }
 
 call plug#end()
