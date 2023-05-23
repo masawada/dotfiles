@@ -16,6 +16,7 @@ Plug 'tpope/vim-surround'
 Plug 'tyru/open-browser-github.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'w0rp/ale'
+Plug 'github/copilot.vim'
 
 Plug 'elzr/vim-json',                { 'for': 'json' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'js' }
