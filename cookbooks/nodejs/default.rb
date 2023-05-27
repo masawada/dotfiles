@@ -1,10 +1,9 @@
 node.reverse_merge!(
   nodenv: {
     user: node[:user],
-    global: '12.18.1',
+    global: '18.16.0',
     versions: %w[
-      12.18.1
-      14.4.0
+      18.16.0
     ],
     scheme: 'https',
   },
