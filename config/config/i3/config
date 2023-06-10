@@ -128,6 +128,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86Display exec --no-startup-id $HOME/.dotfiles/bin/auto-monitor-adjuster
+bindsym $mod+p exec --no-startup-id $HOME/.dotfiles/bin/auto-monitor-adjuster
 
 # Screen shots
 bindsym --release Print exec scrot -s -d 1 ~/Pictures/%Y-%m-%d-%H-%M-%S.png -e 'xclip -selection c -t image/png < $f'
