@@ -14,6 +14,8 @@ set fileformats=unix,dos,mac
 "Use OS native clipboard"
 if has('clipboard')
   set clipboard=unnamedplus
+  "Retain clipboard contents after exiting vim"
+  autocmd VimLeave * call system("xsel -ib", getreg('+'))
 endif
 
 "Do not create backup file"
