@@ -36,6 +36,7 @@ SPROMPT="%r is correct? [n,y,a,e]: "
 precmd () {
   RPROMPT="%{${fg[yellow]}%}[$(pwd)]%{${reset_color}%}"
 }
+setopt transient_rprompt
 
 # History
 HISTFILE=$HOME/.zsh_history
