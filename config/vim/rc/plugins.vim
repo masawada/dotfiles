@@ -17,6 +17,7 @@ Plug 'tyru/open-browser-github.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'w0rp/ale'
 Plug 'github/copilot.vim'
+Plug 'preservim/vim-indent-guides'
 
 Plug 'elzr/vim-json',                { 'for': 'json' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'js' }
@@ -112,4 +113,14 @@ endif
 if s:is_installed('vim-easy-align')
   nmap ga <Plug>(EasyAlign)
   xmap ga <Plug>(EasyAlign)
+endif
+
+if s:is_installed('vim-indent-guides')
+  let g:indent_guides_enable_on_vim_startup = 1
+  let g:indent_guides_start_level = 1
+  let g:indent_guides_guide_size = 1
+
+  let g:indent_guides_auto_colors = 0
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=7
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=7
 endif
