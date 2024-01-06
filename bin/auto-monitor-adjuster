@@ -39,6 +39,20 @@ case `hostname` in
       esac
     done
     ;;
+  "elgar")
+    for monitor in $monitors; do
+      case $monitor in
+        "DP-1")
+           xrandr --output DP-1 --mode 2560x1440 ;;
+        "HDMI-1")
+           xrandr --output HDMI-1 --mode 1920x1080 --left-of eDP-1 ;;
+        "DP-1-1")
+           xrandr --output DP-1-1 --mode 2560x1440 --left-of eDP-1 ;;
+        "DP-1-2")
+           xrandr --output DP-1-2 --mode 2560x1440 --left-of DP-1-1 ;;
+      esac
+    done
+    ;;
 esac
 
 
