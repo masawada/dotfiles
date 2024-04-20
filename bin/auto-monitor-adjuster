@@ -50,6 +50,10 @@ case `hostname` in
            xrandr --output DP-1-1 --mode 2560x1440 --left-of eDP-1 ;;
         "DP-1-2")
            xrandr --output DP-1-2 --mode 2560x1440 --left-of DP-1-1 ;;
+        "DP-1-5-5")
+           xrandr --output DP-1-5-5 --mode 2560x1440 --left-of eDP-1 ;;
+        "DP-1-6-6")
+           xrandr --output DP-1-6-6 --mode 2560x1440 --left-of DP-1-5-5 ;;
         "DP-2-5-5")
            xrandr --output DP-2-5-5 --mode 2560x1440 --left-of eDP-1 ;;
         "DP-2-6-6")
