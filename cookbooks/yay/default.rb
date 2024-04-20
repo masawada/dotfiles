@@ -1,4 +1,4 @@
-yay_version = '10.3.1'
+yay_version = '12.3.5'
 
 url = "https://github.com/Jguer/yay/releases/download/v#{yay_version}/yay_#{yay_version}_x86_64.tar.gz"
 archive = "/tmp/yay_#{yay_version}_x86_64.tar.gz"
