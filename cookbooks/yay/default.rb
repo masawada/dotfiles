@@ -13,14 +13,14 @@ execute "tar zxvf #{archive}" do
   not_if 'command -v yay'
   cwd '/tmp'
 end
-execute "#{extracted_bin} -Syu yay-bin --noconfirm --noprovides" do
+execute "#{extracted_bin} -Syu yay-bin --noconfirm --provides=no" do
   user node[:user]
   not_if 'command -v yay'
 end
 
 define :yay do
   name = params[:name].shellescape
-  execute "yay -Syu #{name} --noconfirm --noprovides" do
+  execute "yay -Syu #{name} --noconfirm --provides=no" do
     not_if "yay -Q #{name} || yay -Qg #{name}"
     if ENV['SUDO_USER']
       user ENV['SUDO_USER']
