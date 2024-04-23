@@ -11,7 +11,6 @@
 end
 
 %w[
-  ttf-ricty
   siji-git
   cherry-font-git
 ].each do |font|
