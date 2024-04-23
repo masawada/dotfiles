@@ -1,6 +1,5 @@
 package 'xorg-server'
 package 'xorg-xinit'
-package 'light'
 package 'i3-wm'
 yay 'i3lock-color'
 
