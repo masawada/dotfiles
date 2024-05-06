@@ -1,1 +1,0 @@
-yay '1password'

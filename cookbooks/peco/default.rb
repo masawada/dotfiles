@@ -1,3 +1,0 @@
-package 'peco'
-
-dotfile '.peco'

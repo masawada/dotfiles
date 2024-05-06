@@ -1,1 +1,0 @@
-package 'libreoffice-fresh'
