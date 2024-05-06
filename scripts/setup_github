@@ -2,11 +2,11 @@
 
 set -eu
 
-[ ! -e $HOME/.ssh/id_ed25519.pub ] && ssh-keygen -t ed25519
+[ ! -e "$HOME/.ssh/id_ed25519.pub" ] && ssh-keygen -t ed25519
 
-GITHUB_PUBKEY=`cat $HOME/.ssh/id_ed25519.pub`
+GITHUB_PUBKEY=$(cat "$HOME/.ssh/id_ed25519.pub")
 
-read -s -p 'GitHub Personal Access Token: ' GITHUB_PAT
+read -rs -p 'GitHub Personal Access Token: ' GITHUB_PAT
 echo
 
 curl -XPOST \

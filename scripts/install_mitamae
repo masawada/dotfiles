@@ -21,7 +21,7 @@ esac
 
 mitamae_origin="https://github.com/itamae-kitchen/mitamae/releases/download/v${mitamae_version}/${mitamae_bin}.tar.gz"
 
-dot_dir="$(cd $(dirname $0); cd ..; pwd)"
+dot_dir="$(cd "$(dirname "$0")"; cd ..; pwd)"
 tar="${dot_dir}/bin/mitamae-${mitamae_bin}.tar.gz"
 bin="/usr/local/bin/mitamae"
 

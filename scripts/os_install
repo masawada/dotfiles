@@ -1,33 +1,33 @@
 #!/bin/bash
 
-if [ -v $NEW_USERNAME ]; then
+if [ -v "$NEW_USERNAME" ]; then
   echo 'NEW_USERNAME must be defined.';
   exit 1;
 fi
 
 # defaults
-[ -v $TARGET_DEVICE ] && TARGET_DEVICE=/dev/sda
-[ -v $SWAPSIZE ] && SWAPSIZE=48G
-[ -v $NEW_HOSTNAME ] && NEW_HOSTNAME=sibelius
+[ -v "$TARGET_DEVICE" ] && TARGET_DEVICE=/dev/sda
+[ -v "$SWAPSIZE" ] && SWAPSIZE=48G
+[ -v "$NEW_HOSTNAME" ] && NEW_HOSTNAME=sibelius
 
-echo 'TARGET_DEVICE: ' $TARGET_DEVICE
-echo 'SWAPSIZE: ' $SWAPSIZE
-echo 'NEW_HOSTNAME: ' $NEW_HOSTNAME
-echo 'NEW_USERNAME: ' $NEW_USERNAME
+echo 'TARGET_DEVICE: ' "$TARGET_DEVICE"
+echo 'SWAPSIZE: ' "$SWAPSIZE"
+echo 'NEW_HOSTNAME: ' "$NEW_HOSTNAME"
+echo 'NEW_USERNAME: ' "$NEW_USERNAME"
 echo
 echo 'All partitions will be removed.'
-read -p 'Are you sure to continue the installation? [y/n]: ' YN_CONTINUE
+read -rp 'Are you sure to continue the installation? [y/n]: ' YN_CONTINUE
 [ "$YN_CONTINUE" != "y" ] && exit
 
 case "$TARGET_DEVICE" in
   /dev/sd*)
-    DEVICE_NAME=$(basename $TARGET_DEVICE)
+    DEVICE_NAME=$(basename "$TARGET_DEVICE")
     UEFI_PARTITION="${TARGET_DEVICE}1"
     BOOT_PARTITION="${TARGET_DEVICE}2"
     ROOT_PARTITION="${TARGET_DEVICE}3"
     ;;
   /dev/nvme*)
-    DEVICE_NAME=$(basename $TARGET_DEVICE)
+    DEVICE_NAME=$(basename "$TARGET_DEVICE")
     UEFI_PARTITION="${TARGET_DEVICE}p1"
     BOOT_PARTITION="${TARGET_DEVICE}p2"
     ROOT_PARTITION="${TARGET_DEVICE}p3"
@@ -40,26 +40,26 @@ set -eux
 timedatectl set-ntp true
 
 # Partitioning
-cat /proc/partitions | grep -E "${DEVICE_NAME}.+" | awk '{ print $2 }' | xargs -I{} parted -s $TARGET_DEVICE rm {}
-parted -s $TARGET_DEVICE mklabel gpt
-parted -s $TARGET_DEVICE mkpart primary fat32 1MiB 256MiB
-parted -s $TARGET_DEVICE set 1 boot on
-parted -s $TARGET_DEVICE set 1 esp on
-parted -s $TARGET_DEVICE mkpart primary 256MiB 512MiB
-parted -s $TARGET_DEVICE mkpart primary 512MiB 100%
+grep -E "${DEVICE_NAME}.+" /proc/partitions | awk '{ print $2 }' | xargs -I{} parted -s "$TARGET_DEVICE" rm {}
+parted -s "$TARGET_DEVICE" mklabel gpt
+parted -s "$TARGET_DEVICE" mkpart primary fat32 1MiB 256MiB
+parted -s "$TARGET_DEVICE" set 1 boot on
+parted -s "$TARGET_DEVICE" set 1 esp on
+parted -s "$TARGET_DEVICE" mkpart primary 256MiB 512MiB
+parted -s "$TARGET_DEVICE" mkpart primary 512MiB 100%
 
 # Filesystems
-mkfs.vfat -F32 $UEFI_PARTITION
+mkfs.vfat -F32 "$UEFI_PARTITION"
 
-cryptsetup luksFormat --type luks1 $BOOT_PARTITION
-cryptsetup luksOpen $BOOT_PARTITION cryptboot
+cryptsetup luksFormat --type luks1 "$BOOT_PARTITION"
+cryptsetup luksOpen "$BOOT_PARTITION" cryptboot
 mkfs.ext4 /dev/mapper/cryptboot
 
-cryptsetup luksFormat --type luks1 $ROOT_PARTITION
-cryptsetup luksOpen $ROOT_PARTITION lvm
+cryptsetup luksFormat --type luks1 "$ROOT_PARTITION"
+cryptsetup luksOpen "$ROOT_PARTITION" lvm
 pvcreate /dev/mapper/lvm
 vgcreate arch /dev/mapper/lvm
-lvcreate -L $SWAPSIZE arch -n swap
+lvcreate -L "$SWAPSIZE" arch -n swap
 lvcreate -l +100%FREE arch -n root
 mkswap -L swap /dev/mapper/arch-swap
 mkfs.ext4 /dev/mapper/arch-root
@@ -68,7 +68,7 @@ mount /dev/mapper/arch-root /mnt
 mkdir /mnt/boot
 mount /dev/mapper/cryptboot /mnt/boot
 mkdir /mnt/boot/efi
-mount $UEFI_PARTITION /mnt/boot/efi
+mount "$UEFI_PARTITION" /mnt/boot/efi
 
 swapon /dev/mapper/arch-swap
 

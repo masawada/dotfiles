@@ -2,7 +2,7 @@
 
 set -eu
 
-dot_dir=$(cd $(dirname $0); cd ..; pwd)
+dot_dir=$(cd "$(dirname "$0")"; cd ..; pwd)
 
 if [ ! -e /usr/local/bin/mitamae ]; then
   echo "Error: mitamae not found"
@@ -19,6 +19,6 @@ fi
 git submodule init && git submodule sync && git submodule update --depth 1
 
 case "$(uname)" in
-  "Darwin")  /usr/local/bin/mitamae local $@ $dot_dir/lib/recipe.rb ;;
-  *) sudo -E /usr/local/bin/mitamae local $@ $dot_dir/lib/recipe.rb ;;
+  "Darwin")  /usr/local/bin/mitamae local "$@" "$dot_dir/lib/recipe.rb" ;;
+  *) sudo -E /usr/local/bin/mitamae local "$@" "$dot_dir/lib/recipe.rb" ;;
 esac

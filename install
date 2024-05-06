@@ -5,8 +5,8 @@ if ! type git > /dev/null; then
   exit 1
 fi
 
-git clone git@github.com:masawada/dotfiles.git $HOME/.dotfiles
-cd $HOME/.dotfiles
+git clone git@github.com:masawada/dotfiles.git "$HOME/.dotfiles"
+cd "$HOME/.dotfiles"
 
 ./scripts/install_mitamae
 ./scripts/provision
