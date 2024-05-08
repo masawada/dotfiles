@@ -3,4 +3,4 @@
 set -eu
 
 dot_dir=$(cd "$(dirname "$0")"; cd ..; pwd)
-exec "$dot_dir/lib/provision.sh"
+exec env DOT_DIR="$dot_dir" "$dot_dir/lib/provision.sh"
