@@ -51,6 +51,7 @@ extend_sudo_timeout
 load_recipe "yay"
 
 load_recipe "git"
+load_recipe "vim"
 
 ## restore sudo timeout
 restore_sudo_timeout
