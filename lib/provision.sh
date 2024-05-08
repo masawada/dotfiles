@@ -53,5 +53,7 @@ load_recipe "yay"
 load_recipe "git"
 load_recipe "vim"
 
+load_recipe "dhclient"
+
 ## restore sudo timeout
 restore_sudo_timeout
