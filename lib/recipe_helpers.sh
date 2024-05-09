@@ -83,3 +83,55 @@ system_file () {
     log_info "$destination_path already exists. Skipping..."
   fi
 }
+
+# enable service with systemd if not enabled
+enable_systemd_service () {
+  log_info "installing a systemd service: $1"
+
+  service_name="$1"
+
+  if ! systemctl is-enabled --quiet "$service_name"; then
+    execute_su "systemctl enable $service_name"
+  else
+    log_info "$service_name is already enabled. Skipping..."
+  fi
+}
+
+# start service with systemd if not started
+start_systemd_service () {
+  log_info "installing a systemd service: $1"
+
+  service_name="$1"
+
+  if ! systemctl is-active --quiet "$service_name"; then
+    execute_su "systemctl enable --now $service_name"
+  else
+    log_info "$service_name is already started. Skipping..."
+  fi
+}
+
+# enable user service with systemd if not enabled
+enable_user_systemd_service () {
+  log_info "installing a user systemd service: $1"
+
+  service_name="$1"
+
+  if ! systemctl --user is-enabled --quiet "$service_name"; then
+    execute "systemctl --user enable $service_name"
+  else
+    log_info "$service_name is already enabled. Skipping..."
+  fi
+}
+
+# start user service with systemd if not started
+start_user_systemd_service () {
+  log_info "installing a user systemd service: $1"
+
+  service_name="$1"
+
+  if ! systemctl --user is-active --quiet "$service_name"; then
+    execute "systemctl --user enable --now $service_name"
+  else
+    log_info "$service_name is already started. Skipping..."
+  fi
+}
