@@ -80,5 +80,14 @@ load_recipe "redis"
 load_recipe "imagemagick"
 load_recipe "ansible"
 
+# desktop applications
+load_recipe "google-chrome"
+load_recipe "slack"
+load_recipe "1password"
+load_recipe "vlc"
+load_recipe "obs-studio"
+load_recipe "audacity"
+load_recipe "libreoffice"
+
 ## restore sudo timeout
 restore_sudo_timeout
