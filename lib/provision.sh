@@ -71,6 +71,7 @@ load_recipe "peco"
 load_recipe "docker"
 load_recipe "tree"
 load_recipe "clipboard"
+load_recipe "percona-toolkit"
 
 ## restore sudo timeout
 restore_sudo_timeout
