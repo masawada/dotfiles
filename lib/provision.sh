@@ -65,6 +65,7 @@ load_recipe "netctl"
 load_recipe "inetutils"
 load_recipe "dnsmasq"
 load_recipe "dnsutils"
+load_recipe "lsof"
 
 ## restore sudo timeout
 restore_sudo_timeout
