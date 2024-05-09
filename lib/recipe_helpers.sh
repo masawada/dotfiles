@@ -146,3 +146,30 @@ start_user_systemd_service () {
     log_info "$service_name is already started. Skipping..."
   fi
 }
+
+# create a group if not exists
+group () {
+  group_name="$1"
+
+  log_info "creating a group: $group_name"
+
+  if ! getent group "$group_name" &>/dev/null; then
+    execute_su "groupadd $group_name"
+  else
+    log_info "$group_name already exists. Skipping..."
+  fi
+}
+
+# add user to a group if not added
+add_user_to_group () {
+  user_name="$1"
+  group_name="$2"
+
+  log_info "adding a user to a group: $user_name -> $group_name"
+
+  if ! getent group "$group_name" | grep -q "\b$user_name\b"; then
+    execute_su "usermod -aG $group_name $user_name"
+  else
+    log_info "$user_name is already in $group_name. Skipping..."
+  fi
+}
