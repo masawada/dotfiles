@@ -50,10 +50,10 @@ install_binary_with_zip () {
 
 # create symlink $CONFIG_DIR/$1 to $HOME/.$1 if not exists
 dotfile () {
-  log_info "installing a dotfile: $1"
-
   real_path="$CONFIG_DIR/$1"
   symlink_path="$HOME/.$1"
+
+  log_info "installing a dotfile: $symlink_path"
 
   if [ ! -d "$(dirname "$symlink_path")" ]; then
     execute "mkdir -p $(dirname "$symlink_path")"
@@ -68,10 +68,10 @@ dotfile () {
 
 # copy $RECIPE_DIR/files/$1 to /$1 if not exists
 system_file () {
-  log_info "installing a file: $1"
-
   source_path="$RECIPE_DIR/files/$1"
   destination_path="/$1"
+
+  log_info "installing a file: $destination_path"
 
   if [ ! -d "$(dirname "$destination_path")" ]; then
     execute_su "mkdir -p $(dirname "$destination_path")"
