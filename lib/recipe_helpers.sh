@@ -48,6 +48,17 @@ install_binary_archived_with_zip () {
   execute_su "install /tmp/$extracted_dir/$name /usr/local/bin/$name"
 }
 
+install_executable_file_from_url () {
+  name="$1"
+  url="$2"
+  sha256_checksum="$3"
+
+  log_info "installing an executable file from URL: $name"
+  execute "curl -L $url -o /tmp/$name"
+  execute "echo \"$sha256_checksum  /tmp/$name\" | sha256sum -c"
+  execute_su "install /tmp/$name /usr/local/bin/$name"
+}
+
 # create symlink $CONFIG_DIR/$1 to $HOME/.$1 if not exists
 dotfile () {
   real_path="$CONFIG_DIR/$1"
