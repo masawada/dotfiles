@@ -97,7 +97,7 @@ system_file () {
 
 # enable service with systemd if not enabled
 enable_systemd_service () {
-  log_info "installing a systemd service: $1"
+  log_info "enabling a systemd service: $1"
 
   service_name="$1"
 
@@ -110,7 +110,7 @@ enable_systemd_service () {
 
 # start service with systemd if not started
 start_systemd_service () {
-  log_info "installing a systemd service: $1"
+  log_info "starting a systemd service: $1"
 
   service_name="$1"
 
@@ -123,7 +123,7 @@ start_systemd_service () {
 
 # enable user service with systemd if not enabled
 enable_user_systemd_service () {
-  log_info "installing a user systemd service: $1"
+  log_info "enabling a user systemd service: $1"
 
   service_name="$1"
 
@@ -136,7 +136,7 @@ enable_user_systemd_service () {
 
 # start user service with systemd if not started
 start_user_systemd_service () {
-  log_info "installing a user systemd service: $1"
+  log_info "starting a user systemd service: $1"
 
   service_name="$1"
 
