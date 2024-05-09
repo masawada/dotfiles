@@ -71,7 +71,7 @@ create_directory () {
   fi
 }
 
-create_symlnk () {
+create_symlink () {
   source_path="$1"
   destination_path="$2"
 
