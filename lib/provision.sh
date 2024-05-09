@@ -73,6 +73,7 @@ load_recipe "tree"
 load_recipe "clipboard"
 load_recipe "percona-toolkit"
 load_recipe "whois"
+load_recipe "gnome-keyring"
 
 ## restore sudo timeout
 restore_sudo_timeout
