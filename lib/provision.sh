@@ -76,6 +76,7 @@ load_recipe "whois"
 load_recipe "gnome-keyring"
 load_recipe "envchain"
 load_recipe "mariadb"
+load_recipe "redis"
 
 ## restore sudo timeout
 restore_sudo_timeout
