@@ -61,6 +61,7 @@ load_recipe "ssh-agent"
 # tools
 load_recipe "ntp"
 load_recipe "dhclient"
+load_recipe "netctl"
 
 ## restore sudo timeout
 restore_sudo_timeout
