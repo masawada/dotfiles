@@ -59,6 +59,31 @@ install_executable_file_from_url () {
   execute_su "install /tmp/$name /usr/local/bin/$name"
 }
 
+create_directory () {
+  directory_path="$1"
+
+  log_info "creating a directory: $directory_path"
+
+  if [ ! -d "$directory_path" ]; then
+    execute_su "mkdir -p $directory_path"
+  else
+    log_info "$directory_path already exists. Skipping..."
+  fi
+}
+
+create_symlnk () {
+  source_path="$1"
+  destination_path="$2"
+
+  log_info "creating a symlink: $destination_path -> $source_path"
+
+  if [ ! -e "$destination_path" ]; then
+    execute_su "ln -s $source_path $destination_path"
+  else
+    log_info "$destination_path already exists. Skipping..."
+  fi
+}
+
 # create symlink $CONFIG_DIR/$1 to $HOME/.$1 if not exists
 dotfile () {
   real_path="$CONFIG_DIR/$1"
@@ -66,9 +91,7 @@ dotfile () {
 
   log_info "installing a dotfile: $symlink_path"
 
-  if [ ! -d "$(dirname "$symlink_path")" ]; then
-    execute "mkdir -p $(dirname "$symlink_path")"
-  fi
+  create_directory "$(dirname "$symlink_path")"
 
   if [ ! -e "$symlink_path" ]; then
     execute "ln -s $real_path $symlink_path"
@@ -84,9 +107,7 @@ system_file () {
 
   log_info "installing a file: $destination_path"
 
-  if [ ! -d "$(dirname "$destination_path")" ]; then
-    execute_su "mkdir -p $(dirname "$destination_path")"
-  fi
+  create_directory "$(dirname "$destination_path")"
 
   if [ ! -e "$destination_path" ]; then
     execute_su "cp $source_path $destination_path"
