@@ -22,7 +22,7 @@ aur () {
   fi
 }
 
-install_binary_with_tarball () {
+install_binary_archived_with_tarball () {
   name="$1"
   url="$2"
   extracted_dir="$3"
@@ -35,7 +35,7 @@ install_binary_with_tarball () {
   execute_su "install /tmp/$extracted_dir/$name /usr/local/bin/$name"
 }
 
-install_binary_with_zip () {
+install_binary_archived_with_zip () {
   name="$1"
   url="$2"
   extracted_dir="$3"
