@@ -73,7 +73,7 @@ system_file () {
   source_path="$RECIPE_DIR/files/$1"
   destination_path="/$1"
 
-  if [ -d "$(dirname "$destination_path")" ]; then
+  if [ ! -d "$(dirname "$destination_path")" ]; then
     execute_su "mkdir -p $(dirname "$destination_path")"
   fi
 
