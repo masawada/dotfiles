@@ -31,7 +31,7 @@ install_binary_archived_with_tarball () {
   log_info "installing a binary archived with tarball: $name"
   execute "curl -L $url -o /tmp/$name.tar.gz"
   execute "echo \"$sha256_checksum  /tmp/$name.tar.gz\" | sha256sum -c"
-  execute "tar -xzf /tmp/$name.tar.gz -C /tmp"
+  execute "tar --overwrite -xzf /tmp/$name.tar.gz -C /tmp"
   execute_su "install /tmp/$extracted_dir/$name /usr/local/bin/$name"
 }
 
@@ -44,7 +44,7 @@ install_binary_archived_with_zip () {
   log_info "installing a binary archived with zip: $name"
   execute "curl -L $url -o /tmp/$name.zip"
   execute "echo \"$sha256_checksum  /tmp/$name.zip\" | sha256sum -c"
-  execute "unzip /tmp/$name.zip -d /tmp"
+  execute "unzip -o /tmp/$name.zip -d /tmp"
   execute_su "install /tmp/$extracted_dir/$name /usr/local/bin/$name"
 }
 
