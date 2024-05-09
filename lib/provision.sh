@@ -66,6 +66,7 @@ load_recipe "inetutils"
 load_recipe "dnsmasq"
 load_recipe "dnsutils"
 load_recipe "lsof"
+load_recipe "ghq"
 
 ## restore sudo timeout
 restore_sudo_timeout
