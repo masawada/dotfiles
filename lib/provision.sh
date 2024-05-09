@@ -78,6 +78,7 @@ load_recipe "envchain"
 load_recipe "mariadb"
 load_recipe "redis"
 load_recipe "imagemagick"
+load_recipe "ansible"
 
 ## restore sudo timeout
 restore_sudo_timeout
