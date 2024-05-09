@@ -72,6 +72,7 @@ load_recipe "docker"
 load_recipe "tree"
 load_recipe "clipboard"
 load_recipe "percona-toolkit"
+load_recipe "whois"
 
 ## restore sudo timeout
 restore_sudo_timeout
