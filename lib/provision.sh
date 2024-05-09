@@ -56,6 +56,7 @@ load_recipe "git"
 load_recipe "vim"
 load_recipe "zsh"
 load_recipe "tmux"
+load_recipe "ssh-agent"
 
 # tools
 load_recipe "ntp"
