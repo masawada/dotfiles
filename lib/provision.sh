@@ -75,6 +75,7 @@ load_recipe "percona-toolkit"
 load_recipe "whois"
 load_recipe "gnome-keyring"
 load_recipe "envchain"
+load_recipe "mariadb"
 
 ## restore sudo timeout
 restore_sudo_timeout
