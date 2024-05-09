@@ -80,6 +80,22 @@ load_recipe "redis"
 load_recipe "imagemagick"
 load_recipe "ansible"
 
+# desktop environments
+load_recipe "i3"
+load_recipe "pulseaudio"
+load_recipe "Xresources"
+load_recipe "xinput"
+load_recipe "xrandr"
+load_recipe "picom"
+load_recipe "gnome-terminal"
+load_recipe "polybar"
+load_recipe "rofi"
+load_recipe "fonts"
+load_recipe "ibus-skk"
+load_recipe "dunst"
+load_recipe "feh"
+load_recipe "scrot"
+
 # desktop applications
 load_recipe "google-chrome"
 load_recipe "slack"
