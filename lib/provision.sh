@@ -54,6 +54,7 @@ load_recipe "yay"
 # basics
 load_recipe "git"
 load_recipe "vim"
+load_recipe "zsh"
 
 # tools
 load_recipe "ntp"
