@@ -64,6 +64,7 @@ load_recipe "dhclient"
 load_recipe "netctl"
 load_recipe "inetutils"
 load_recipe "dnsmasq"
+load_recipe "dnsutils"
 
 ## restore sudo timeout
 restore_sudo_timeout
