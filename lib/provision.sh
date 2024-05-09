@@ -69,6 +69,7 @@ load_recipe "lsof"
 load_recipe "ghq"
 load_recipe "peco"
 load_recipe "docker"
+load_recipe "tree"
 
 ## restore sudo timeout
 restore_sudo_timeout
