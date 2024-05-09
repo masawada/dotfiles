@@ -48,11 +48,15 @@ extend_sudo_timeout
 
 ## load recipes
 # env RECIPE_DIR is defined in load_recipe function
+
 load_recipe "yay"
 
+# basics
 load_recipe "git"
 load_recipe "vim"
 
+# tools
+load_recipe "ntp"
 load_recipe "dhclient"
 
 ## restore sudo timeout
