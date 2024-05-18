@@ -59,6 +59,17 @@ install_executable_file_from_url () {
   execute_su "install /tmp/$name /usr/local/bin/$name"
 }
 
+install_file_from_url () {
+  url="$1"
+  sha256_checksum="$2"
+  destination_path="$3"
+
+  log_info "installing a file from URL: $destination_path"
+  execute "curl -L $url -o /tmp/$(basename "$destination_path")"
+  execute "echo \"$sha256_checksum  /tmp/$(basename "$destination_path")\" | sha256sum -c"
+  execute "cp /tmp/$(basename "$destination_path") $destination_path"
+}
+
 create_directory () {
   directory_path="$1"
 
