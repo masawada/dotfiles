@@ -81,6 +81,12 @@ load_recipe "redis"
 load_recipe "imagemagick"
 load_recipe "ansible"
 
+# langs
+load_recipe "perl"
+load_recipe "ruby"
+load_recipe "node"
+load_recipe "go"
+
 # desktop environments
 load_recipe "i3"
 load_recipe "pulseaudio"
