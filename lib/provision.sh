@@ -50,6 +50,7 @@ extend_sudo_timeout
 # env RECIPE_DIR is defined in load_recipe function
 
 load_recipe "yay"
+load_recipe "update"
 
 # basics
 load_recipe "git"
