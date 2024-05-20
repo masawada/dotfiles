@@ -1,0 +1,2 @@
+dotfile "xinitrc"
+dotfile "Xmodmap"

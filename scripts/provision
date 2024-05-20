@@ -3,22 +3,4 @@
 set -eu
 
 dot_dir=$(cd "$(dirname "$0")"; cd ..; pwd)
-
-if [ ! -e /usr/local/bin/mitamae ]; then
-  echo "Error: mitamae not found"
-  exit 1
-fi
-
-if [ "$(uname)" = "Darwin" ]; then
-  if ! type brew > /dev/null; then
-    echo "Error: brew not found"
-    exit 1
-  fi
-fi
-
-git submodule init && git submodule sync && git submodule update --depth 1
-
-case "$(uname)" in
-  "Darwin")  /usr/local/bin/mitamae local "$@" "$dot_dir/lib/recipe.rb" ;;
-  *) sudo -E /usr/local/bin/mitamae local "$@" "$dot_dir/lib/recipe.rb" ;;
-esac
+exec env DOT_DIR="$dot_dir" "$dot_dir/lib/provision.sh"
