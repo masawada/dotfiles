@@ -64,6 +64,8 @@ install_file_from_url () {
   sha256_checksum="$2"
   destination_path="$3"
 
+  create_directory "$(dirname "$destination_path")"
+
   log_info "installing a file from URL: $destination_path"
   execute "curl -L $url -o /tmp/$(basename "$destination_path")"
   execute "echo \"$sha256_checksum  /tmp/$(basename "$destination_path")\" | sha256sum -c"
