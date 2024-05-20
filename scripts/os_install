@@ -6,9 +6,9 @@ if [ -v "$NEW_USERNAME" ]; then
 fi
 
 # defaults
-[ -v "$TARGET_DEVICE" ] && TARGET_DEVICE=/dev/sda
-[ -v "$SWAPSIZE" ] && SWAPSIZE=48G
-[ -v "$NEW_HOSTNAME" ] && NEW_HOSTNAME=sibelius
+[ -z "$TARGET_DEVICE" ] && TARGET_DEVICE=/dev/sda
+[ -z "$SWAPSIZE" ] && SWAPSIZE=48G
+[ -z "$NEW_HOSTNAME" ] && NEW_HOSTNAME=sibelius
 
 echo 'TARGET_DEVICE: ' "$TARGET_DEVICE"
 echo 'SWAPSIZE: ' "$SWAPSIZE"
