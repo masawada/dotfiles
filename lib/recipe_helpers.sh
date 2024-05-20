@@ -76,6 +76,18 @@ create_directory () {
   log_info "creating a directory: $directory_path"
 
   if [ ! -d "$directory_path" ]; then
+    execute "mkdir -p $directory_path"
+  else
+    log_info "$directory_path already exists. Skipping..."
+  fi
+}
+
+create_directory_su () {
+  directory_path="$1"
+
+  log_info "creating a directory: $directory_path"
+
+  if [ ! -d "$directory_path" ]; then
     execute_su "mkdir -p $directory_path"
   else
     log_info "$directory_path already exists. Skipping..."
@@ -118,7 +130,7 @@ system_file () {
 
   log_info "installing a file: $destination_path"
 
-  create_directory "$(dirname "$destination_path")"
+  create_directory_su "$(dirname "$destination_path")"
 
   if [ ! -e "$destination_path" ]; then
     execute_su "cp $source_path $destination_path"
