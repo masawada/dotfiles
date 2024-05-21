@@ -106,6 +106,7 @@ load_recipe "scrot"
 
 # desktop applications
 load_recipe "google-chrome"
+load_recipe "firefox"
 load_recipe "slack"
 load_recipe "1password"
 load_recipe "vlc"
