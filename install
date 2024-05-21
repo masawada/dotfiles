@@ -8,6 +8,6 @@ fi
 git clone git@github.com:masawada/dotfiles.git "$HOME/.dotfiles"
 cd "$HOME/.dotfiles"
 
-./scripts/provision
+RUN=1 ./scripts/provision
 
 # vim: set ft=sh ff=unix fileencoding=utf-8 expandtab ts=2 sw=2 :
