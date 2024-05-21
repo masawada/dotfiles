@@ -88,6 +88,9 @@ load_recipe "node"
 load_recipe "go"
 
 # desktop environments
+load_recipe "wayland"
+load_recipe "foot"
+
 load_recipe "x11"
 load_recipe "i3"
 load_recipe "pulseaudio"
