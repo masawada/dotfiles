@@ -93,6 +93,10 @@ endif
 if s:is_installed('vim-colors-solarized')
   colorscheme solarized
   set background=light
+
+  if (has("termguicolors"))
+    set termguicolors
+  endif
 endif
 
 if s:is_installed('vim-colors-solarized') && s:is_installed('lightline.vim')
