@@ -1,0 +1,3 @@
+file=$HOME/.local/share/fcitx5/skk/user.dict,mode=readwrite,type=file
+file=/usr/share/skk/SKK-JISYO.L,mode=readonly,type=file
+file=$HOME/.local/share/fcitx5/skk/SKK-JISYO.jawiki,mode=readonly,type=file,encoding=UTF-8

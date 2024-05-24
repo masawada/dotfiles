@@ -90,9 +90,9 @@ load_recipe "go"
 # desktop environments
 load_recipe "wayland"
 load_recipe "foot"
+load_recipe "skk"
 load_recipe "pulseaudio"
 load_recipe "fonts"
-load_recipe "ibus-skk"
 load_recipe "dunst"
 
 # desktop applications
