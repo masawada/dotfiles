@@ -7,6 +7,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'cohama/lexima.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'junegunn/vim-easy-align'
 Plug 'leafgarland/typescript-vim'
 Plug 'maralla/completor.vim',        { 'do': 'make js' }
