@@ -20,6 +20,7 @@ create_directory "$HOME/Pictures"
 
 aur "wlogout"
 dotfile "config/wlogout/layout"
+dotfile "config/wlogout/style.css"
 
 # configure mouse button
 system_file "etc/udev/hwdb.d/70-raspberry-pi-bluetooth-receiver.hwdb"
