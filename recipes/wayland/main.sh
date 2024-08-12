@@ -4,6 +4,9 @@ dotfile "config/hypr/hyprland.conf"
 package "hyprlock"
 dotfile "config/hypr/hyprlock.conf"
 
+package "hyprpaper"
+dotfile "config/hypr/hyprpaper.conf"
+
 package "waybar"
 
 package "wofi"
