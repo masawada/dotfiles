@@ -13,7 +13,6 @@ done
 
 aur_fonts=(
   "siji-git"
-  "cherry-font-git"
 )
 for aur_font in "${aur_fonts[@]}"; do
   aur "$aur_font"
