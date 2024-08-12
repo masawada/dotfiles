@@ -8,6 +8,8 @@ package "hyprpaper"
 dotfile "config/hypr/hyprpaper.conf"
 
 package "waybar"
+dotfile "config/waybar/config"
+dotfile "config/waybar/style.css"
 
 package "wofi"
 dotfile "config/wofi/config"

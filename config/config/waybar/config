@@ -1,0 +1,19 @@
+{
+  "modules-left": [],
+  "modules-center": [],
+  "modules-right": ["tray", "network", "clock"],
+
+  "tray": {
+    "icon-size": 15,
+    "spacing": 16
+  },
+  "network": {
+    "format-wifi": "{essid} {ipaddr}/{cidr}",
+    "format-ethernet": "Wired {ipaddr}/{cidr}",
+    "format-disconnected": "Network disconnected", 
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%a, %b %d, %H:%M:%S}"
+  }
+}
