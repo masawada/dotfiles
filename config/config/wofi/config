@@ -1,1 +1,9 @@
+mode=run
+width=640px
+height=240px
 
+no_actions=true
+hide_scroll=true
+
+allow_images=true
+image_size=16px
