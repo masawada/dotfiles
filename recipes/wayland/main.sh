@@ -32,3 +32,9 @@ dotfile "config/xremap/config.yml"
 add_user_to_group "$USER" "input"
 system_file "etc/modules-load.d/uinput.conf"
 system_file "etc/udev/rules.d/99-input.rules"
+
+# screen sharing
+package "pipewire"
+package "wireplumber"
+package "xdg-desktop-portal-wlr"
+package "xdg-desktop-portal-gtk"
