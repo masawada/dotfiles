@@ -1,0 +1,7 @@
+keymap:
+  - name: Assign trackball sub-buttons for back/forward
+    remap:
+      BTN_BACK: Alt_L-Left
+      BTN_FORWARD: Alt_L-Right
+    device:
+      only: ["AndanteSoftware Bluetooth to USB HID Converter"]

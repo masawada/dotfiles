@@ -125,7 +125,7 @@ dotfile () {
   fi
 }
 
-# copy $RECIPE_DIR/files/$1 to /$1 if not exists
+# copy $RECIPE_DIR/files/$1 to /$1
 system_file () {
   source_path="$RECIPE_DIR/files/$1"
   destination_path="/$1"
@@ -133,12 +133,7 @@ system_file () {
   log_info "installing a file: $destination_path"
 
   create_directory_su "$(dirname "$destination_path")"
-
-  if [ ! -e "$destination_path" ]; then
-    execute_su "cp $source_path $destination_path"
-  else
-    log_info "$destination_path already exists. Skipping..."
-  fi
+  execute_su "cp $source_path $destination_path"
 }
 
 # enable service with systemd if not enabled

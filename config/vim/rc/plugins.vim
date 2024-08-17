@@ -7,6 +7,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'cohama/lexima.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'junegunn/vim-easy-align'
 Plug 'leafgarland/typescript-vim'
 Plug 'maralla/completor.vim',        { 'do': 'make js' }
@@ -93,6 +94,10 @@ endif
 if s:is_installed('vim-colors-solarized')
   colorscheme solarized
   set background=light
+
+  if (has("termguicolors"))
+    set termguicolors
+  endif
 endif
 
 if s:is_installed('vim-colors-solarized') && s:is_installed('lightline.vim')
@@ -121,6 +126,6 @@ if s:is_installed('vim-indent-guides')
   let g:indent_guides_guide_size = 1
 
   let g:indent_guides_auto_colors = 0
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=7
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=7
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=0
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
 endif

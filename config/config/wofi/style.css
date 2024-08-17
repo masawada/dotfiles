@@ -1,0 +1,52 @@
+window {
+  margin: 0;
+  background-color: #002b36;
+  border: none;
+  opacity: 0.9;
+}
+
+#outer-box {
+  margin: 16px;
+  border: none;
+}
+
+#input {
+  margin: 0;
+  background-color: #073642;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  color: #fdf6e3;
+  font-family: "Noto Sans JP";
+}
+
+#scroll {
+  margin: 16px 0 0;
+  border: none;
+}
+
+#inner-box {
+  margin: 0;
+}
+
+#entry {
+  padding: 10px 4px;
+  border-right: solid 4px #002b36;
+  font-family: "Noto Sans JP";
+}
+
+#entry:selected {
+  background-color: #073642;
+  border-right: solid 4px #839496;
+  outline: none;
+}
+
+#text {
+  margin: 0;
+  border: none;
+  color: #ffffff;
+}
+
+#img {
+  margin: 0 8px;
+}

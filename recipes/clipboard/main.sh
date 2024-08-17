@@ -1,2 +1,1 @@
-package "xsel"
-package "xclip"
+package "wl-clipboard"

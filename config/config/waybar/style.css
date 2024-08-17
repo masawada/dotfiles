@@ -1,0 +1,20 @@
+window#waybar {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  margin: 12px 8px;
+}
+
+.module {
+  margin: 0 8px;
+  padding: 8px 16px;
+
+  border-radius: 32px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 1.0);
+  font-size: 12px;
+  font-family: "Noto Sans Mono";
+}
