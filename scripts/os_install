@@ -80,10 +80,9 @@ cat <<EOF > /etc/pacman.d/mirrorlist
 ## Generated on 2018-12-01
 ##
 
-## Japan
-Server = https://ftp.jaist.ac.jp/pub/Linux/ArchLinux/\$repo/os/\$arch
-Server = https://jpn.mirror.pkgbuild.com/\$repo/os/\$arch
-Server = https://mirrors.cat.net/archlinux/\$repo/os/\$arch
+## Worldwide
+Server = https://geo.mirror.pkgbuild.com/\$repo/os/\$arch
+Server = https://mirror.rackspace.com/archlinux/\$repo/os/\$arch
 EOF
 
 # Install the base system
