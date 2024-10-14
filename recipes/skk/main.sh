@@ -4,7 +4,7 @@ package "skk-jisyo"
 
 install_file_from_url \
   "https://raw.githubusercontent.com/tokuhirom/jawiki-kana-kanji-dict/master/SKK-JISYO.jawiki" \
-  "0bf0fcf55dca384471d44a50849fd19b031bdfd96ef511efccfe1fe9db476f12" \
+  "9ea164ad08eed516210d62635d3dfc0dd99a3976d52aa843324ff8d0baac59a9" \
   "$HOME/.local/share/fcitx5/skk/SKK-JISYO.jawiki"
 
 dotfile "config/fcitx5/config"
