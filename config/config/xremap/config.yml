@@ -5,3 +5,7 @@ keymap:
       BTN_FORWARD: Alt_L-Right
     device:
       only: ["AndanteSoftware Bluetooth to USB HID Converter"]
+modmap:
+  - name: CapsLock to LCTRL
+    remap:
+      CapsLock: LEFTCTRL
