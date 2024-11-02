@@ -52,12 +52,22 @@ extend_sudo_timeout
 load_recipe "yay"
 load_recipe "update"
 
+# load ssh-agent
+load_recipe "ssh-agent"
+
+if pgrep ssh-agent > /dev/null; then
+  ssh_agent_pid="$(pgrep ssh-agent)"
+  export SSH_AGENT_PID="$ssh_agent_pid"
+  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+fi
+
+execute "ssh-add $HOME/.ssh/id_ed25519"
+
 # basics
 load_recipe "git"
 load_recipe "shell"
 load_recipe "vim"
 load_recipe "tmux"
-load_recipe "ssh-agent"
 
 # tools
 load_recipe "ntp"
