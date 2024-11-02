@@ -41,3 +41,6 @@ package "pipewire"
 package "wireplumber"
 package "xdg-desktop-portal-wlr"
 package "xdg-desktop-portal-gtk"
+
+# brightness control
+package "brightnessctl"
