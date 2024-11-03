@@ -1,8 +1,10 @@
 {
-  "modules-left": [],
+  "modules-left": ["hyprland/workspaces"],
   "modules-center": [],
   "modules-right": ["tray", "network", "clock"],
 
+  "hyprland/workspaces": {
+  },
   "tray": {
     "icon-size": 15,
     "spacing": 16
