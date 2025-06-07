@@ -125,10 +125,14 @@ if platform_is linux; then
   load_recipe "dunst"
 elif platform_is darwin; then
   load_recipe "macos-defaults"
+  load_recipe "iterm2"
+  load_recipe "rectangle"
+  load_recipe "alfred"
 fi
 load_recipe "fonts"
 
 # desktop applications
+load_recipe "vscode"
 load_recipe "google-chrome"
 load_recipe "firefox"
 load_recipe "slack"
