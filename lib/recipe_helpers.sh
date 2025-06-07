@@ -3,10 +3,18 @@ package () {
 
   log_info "installing a package: $package_name"
 
-  if ! pacman -Q "$package_name" &>/dev/null; then
-    execute_su "pacman -S --noconfirm $package_name"
-  else
-    log_info "$package_name is already installed. Skipping..."
+  if platform_is linux; then
+    if ! pacman -Q "$package_name" &>/dev/null; then
+      execute_su "pacman -S --noconfirm $package_name"
+    else
+      log_info "$package_name is already installed. Skipping..."
+    fi
+  elif platform_is darwin; then
+    if ! brew list "$package_name" &>/dev/null; then
+      execute "brew install $package_name"
+    else
+      log_info "$package_name is already installed. Skipping..."
+    fi
   fi
 }
 
@@ -15,10 +23,31 @@ aur () {
 
   log_info "installing a package from AUR: $package_name"
 
-  if ! yay -Q "$package_name" &>/dev/null; then
-    execute "yay -S --noconfirm --provides=no $package_name"
+  if platform_is linux; then
+    if ! yay -Q "$package_name" &>/dev/null; then
+      execute "yay -S --noconfirm --provides=no $package_name"
+    else
+      log_info "$package_name is already installed. Skipping..."
+    fi
   else
-    log_info "$package_name is already installed. Skipping..."
+    log_info "AUR is only available on Linux. Skipping..."
+  fi
+}
+
+# Install macOS applications via Homebrew Cask
+brew_cask () {
+  package_name="$1"
+
+  log_info "installing a macOS application: $package_name"
+
+  if platform_is darwin; then
+    if ! brew list --cask "$package_name" &>/dev/null; then
+      execute "brew install --cask $package_name"
+    else
+      log_info "$package_name is already installed. Skipping..."
+    fi
+  else
+    log_info "Homebrew Cask is only available on macOS. Skipping..."
   fi
 }
 
@@ -213,4 +242,9 @@ add_user_to_group () {
   else
     log_info "$user_name is already in $group_name. Skipping..."
   fi
+}
+
+# Check if the current platform matches the given platform name
+platform_is () {
+  [[ "$PLATFORM" == "$1" ]]
 }

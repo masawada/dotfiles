@@ -19,6 +19,7 @@ export RECIPES_DIR="$DOT_DIR/recipes"
 ## load libraries
 source "$LIB_DIR/core.sh"
 source "$LIB_DIR/functions.sh"
+source "$LIB_DIR/platform.sh"
 source "$LIB_DIR/recipe_helpers.sh"
 
 ## validate commands
