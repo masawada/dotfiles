@@ -1,7 +1,11 @@
 dotfiles
 ========
 
+Cross-platform dotfiles for Arch Linux and macOS.
+
 ## Pre-installation
+
+### Arch Linux
 
 The first step is to install Arch Linux on your PC. Download the Arch Linux iso and create a USB installation disk.
 
@@ -21,10 +25,24 @@ When the installation finishes successfully, the PC will reboot. After reboot, r
 $ bash -c "$(curl -fsSL https://dot.masawada.me/scripts/setup_github)"
 ```
 
+### macOS
+
+For macOS, ensure you have the following prerequisites:
+1. macOS 10.15 (Catalina) or later
+2. Command Line Tools for Xcode (will be installed automatically if missing)
+3. SSH key registered to GitHub
+
 ## Installation
 
-Run the following command to install dotfiles
+The installation process works on both Arch Linux and macOS. Run the following command to install dotfiles:
 
 ```
 $ bash -c "$(curl -fsSL https://dot.masawada.me/install)"
 ```
+
+The installation script will:
+1. Detect your platform automatically
+2. Install platform-appropriate package managers (yay for Arch Linux, Homebrew for macOS)
+3. Install packages and applications
+4. Configure system settings
+5. Symlink configuration files
