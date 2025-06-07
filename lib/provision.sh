@@ -123,6 +123,8 @@ if platform_is linux; then
   load_recipe "skk"
   load_recipe "pulseaudio"
   load_recipe "dunst"
+elif platform_is darwin; then
+  load_recipe "macos-defaults"
 fi
 load_recipe "fonts"
 
