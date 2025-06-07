@@ -50,19 +50,30 @@ extend_sudo_timeout
 ## load recipes
 # env RECIPE_DIR is defined in load_recipe function
 
-load_recipe "yay"
-load_recipe "update"
+if platform_is linux; then
+  load_recipe "yay"
+  load_recipe "update"
+fi
 
 # load ssh-agent
 load_recipe "ssh-agent"
 
-if pgrep ssh-agent > /dev/null; then
-  ssh_agent_pid="$(pgrep ssh-agent)"
-  export SSH_AGENT_PID="$ssh_agent_pid"
-  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+if platform_is linux; then
+  if pgrep ssh-agent > /dev/null; then
+    ssh_agent_pid="$(pgrep ssh-agent)"
+    export SSH_AGENT_PID="$ssh_agent_pid"
+    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+  fi
+elif platform_is darwin; then
+  # macOS handles ssh-agent differently
+  if [[ -S "$SSH_AUTH_SOCK" ]]; then
+    export SSH_AUTH_SOCK
+  fi
 fi
 
-execute "ssh-add $HOME/.ssh/id_ed25519"
+if [[ -f "$HOME/.ssh/id_ed25519" ]]; then
+  execute "ssh-add $HOME/.ssh/id_ed25519"
+fi
 
 # basics
 load_recipe "git"
@@ -72,10 +83,14 @@ load_recipe "tmux"
 
 # tools
 load_recipe "ntp"
-load_recipe "dhclient"
-load_recipe "netctl"
+if platform_is linux; then
+  load_recipe "dhclient"
+  load_recipe "netctl"
+fi
 load_recipe "inetutils"
-load_recipe "dnsmasq"
+if platform_is linux; then
+  load_recipe "dnsmasq"
+fi
 load_recipe "dnsutils"
 load_recipe "lsof"
 load_recipe "ghq"
@@ -99,12 +114,14 @@ load_recipe "node"
 load_recipe "go"
 
 # desktop environments
-load_recipe "wayland"
-load_recipe "foot"
-load_recipe "skk"
-load_recipe "pulseaudio"
+if platform_is linux; then
+  load_recipe "wayland"
+  load_recipe "foot"
+  load_recipe "skk"
+  load_recipe "pulseaudio"
+  load_recipe "dunst"
+fi
 load_recipe "fonts"
-load_recipe "dunst"
 
 # desktop applications
 load_recipe "google-chrome"
