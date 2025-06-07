@@ -52,8 +52,11 @@ extend_sudo_timeout
 
 if platform_is linux; then
   load_recipe "yay"
-  load_recipe "update"
+elif platform_is darwin; then
+  load_recipe "homebrew"
 fi
+
+load_recipe "update"
 
 # load ssh-agent
 load_recipe "ssh-agent"
