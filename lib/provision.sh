@@ -37,12 +37,6 @@ else
   log_info "Running in dry-run mode"
 fi
 
-## reset sudo timeout
-sudo -k
-if [ "$RUN" == 1 ]; then
-  sudo -v
-fi
-
 ## extend sudo timeout
 extend_sudo_timeout
 

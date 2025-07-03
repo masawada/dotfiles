@@ -1,7 +1,8 @@
 # exports:
 # - check_command
 # - load_recipe
-# - extend_sudo
+# - extend_sudo_timeout
+# - restore_sudo_timeout
 
 check_command () {
   cmd="$1"
@@ -29,6 +30,12 @@ load_recipe () {
 }
 
 extend_sudo_timeout () {
+  # reset sudo timeout
+  sudo -k
+  if [ "$RUN" == 1 ]; then
+    sudo -v
+  fi
+  
   log_info "extending sudo timeout"
   execute_su "echo \"Defaults timestamp_timeout=1800\" > /etc/sudoers.d/expand_timeout"
 }
