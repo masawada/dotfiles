@@ -37,7 +37,7 @@ else
   log_info "Running in dry-run mode"
 fi
 
-## extend sudo timeout
+## extend sudo timeout for linux
 extend_sudo_timeout
 
 ## load recipes
@@ -115,5 +115,5 @@ load_recipe "obs-studio"
 load_recipe "audacity"
 load_recipe "libreoffice"
 
-## restore sudo timeout
+## restore sudo timeout for linux
 restore_sudo_timeout
