@@ -49,7 +49,13 @@ extend_sudo_timeout
 ## load recipes
 # env RECIPE_DIR is defined in load_recipe function
 
-load_recipe "yay"
+# OS specific package managers
+if is_macos; then
+  load_recipe "homebrew"
+elif is_linux; then
+  load_recipe "yay"
+fi
+
 load_recipe "update"
 
 # load ssh-agent
