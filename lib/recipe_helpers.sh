@@ -3,15 +3,32 @@ package () {
 
   log_info "installing a package: $package_name"
 
-  if ! pacman -Q "$package_name" &>/dev/null; then
-    execute_su "pacman -S --noconfirm $package_name"
+  if is_macos; then
+    # macOS: use Homebrew
+    if ! brew list "$package_name" &>/dev/null; then
+      execute "brew install $package_name"
+    else
+      log_info "$package_name is already installed. Skipping..."
+    fi
+  elif is_linux; then
+    # Linux: use pacman
+    if ! pacman -Q "$package_name" &>/dev/null; then
+      execute_su "pacman -S --noconfirm $package_name"
+    else
+      log_info "$package_name is already installed. Skipping..."
+    fi
   else
-    log_info "$package_name is already installed. Skipping..."
+    log_warn "Unsupported OS. Cannot install package: $package_name"
   fi
 }
 
 aur () {
   package_name="$1"
+
+  if is_macos; then
+    log_warn "AUR is not available on macOS. Skipping: $package_name"
+    return 0
+  fi
 
   log_info "installing a package from AUR: $package_name"
 
@@ -19,6 +36,23 @@ aur () {
     execute "yay -S --noconfirm --provides=no $package_name"
   else
     log_info "$package_name is already installed. Skipping..."
+  fi
+}
+
+cask () {
+  cask_name="$1"
+
+  if is_linux; then
+    log_warn "Homebrew Cask is not available on Linux. Skipping: $cask_name"
+    return 0
+  fi
+
+  log_info "installing a cask: $cask_name"
+
+  if ! brew list --cask "$cask_name" &>/dev/null; then
+    execute "brew install --cask $cask_name"
+  else
+    log_info "$cask_name is already installed. Skipping..."
   fi
 }
 
