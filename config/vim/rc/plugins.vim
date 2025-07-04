@@ -7,7 +7,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'cohama/lexima.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
-Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'junegunn/vim-easy-align'
 Plug 'leafgarland/typescript-vim'
 Plug 'maralla/completor.vim',        { 'do': 'make js' }
@@ -28,6 +27,11 @@ Plug 'mattn/vim-goimports',          { 'for': 'go' }
 Plug 'motemen/hatena-vim',           { 'for': 'hatena' }
 Plug 'mxw/vim-jsx',                  { 'for': 'js' }
 Plug 'plasticboy/vim-markdown',      { 'for': 'markdown' }
+
+" OS/Environment specific plugins
+if !has('mac') && executable('wl-copy')
+  Plug 'jasonccox/vim-wayland-clipboard'
+endif
 
 call plug#end()
 

@@ -16,7 +16,11 @@ if has('clipboard')
   set clipboard=unnamedplus
 
   "Retain clipboard contents after exiting vim"
-  autocmd VimLeave * call system("wl-copy --trim-newline", getreg('+'))
+  if has('mac')
+    autocmd VimLeave * call system("pbcopy", getreg('+'))
+  elseif executable('wl-copy')
+    autocmd VimLeave * call system("wl-copy --trim-newline", getreg('+'))
+  endif
 endif
 
 "Do not create backup file"
