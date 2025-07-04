@@ -1,3 +1,6 @@
+# This recipe is Linux-only
+is_linux || return
+
 package "hyprland"
 dotfile "config/hypr/hyprland.conf"
 
