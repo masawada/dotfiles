@@ -1,5 +1,11 @@
 package "tmux"
 
+# OS-specific clipboard integration tools
+if is_linux; then
+  # For Wayland clipboard support
+  package "wl-clipboard"
+fi
+
 # install tmux-xpanes
 xpanes_version="4.2.0"
 install_executable_file_from_url \
