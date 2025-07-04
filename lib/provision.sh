@@ -116,8 +116,6 @@ load_recipe "firefox"
 load_recipe "slack"
 load_recipe "1password"
 load_recipe "vlc"
-load_recipe "obs-studio"
-load_recipe "audacity"
 load_recipe "libreoffice"
 
 ## restore sudo timeout for linux
