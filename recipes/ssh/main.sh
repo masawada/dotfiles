@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Create SSH config with AddKeysToAgent setting (common for macOS and Linux)
 ssh_config="$HOME/.ssh/config"
 if [ ! -f "$ssh_config" ]; then

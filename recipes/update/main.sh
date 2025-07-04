@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 if is_macos; then
   log_info "Updating Homebrew packages..."
   execute "brew update"
