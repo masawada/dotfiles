@@ -64,7 +64,11 @@ install_binary_archived_with_tarball () {
 
   log_info "installing a binary archived with tarball: $name"
   execute "curl -L $url -o /tmp/$name.tar.gz"
-  execute "echo \"$sha256_checksum  /tmp/$name.tar.gz\" | sha256sum -c"
+  if is_macos; then
+    execute "echo \"$sha256_checksum  /tmp/$name.tar.gz\" | shasum -a 256 -c"
+  else
+    execute "echo \"$sha256_checksum  /tmp/$name.tar.gz\" | sha256sum -c"
+  fi
   execute "tar --overwrite -xzf /tmp/$name.tar.gz -C /tmp"
   execute_su "install /tmp/$extracted_dir/$name /usr/local/bin/$name"
 }
@@ -77,7 +81,11 @@ install_binary_archived_with_zip () {
 
   log_info "installing a binary archived with zip: $name"
   execute "curl -L $url -o /tmp/$name.zip"
-  execute "echo \"$sha256_checksum  /tmp/$name.zip\" | sha256sum -c"
+  if is_macos; then
+    execute "echo \"$sha256_checksum  /tmp/$name.zip\" | shasum -a 256 -c"
+  else
+    execute "echo \"$sha256_checksum  /tmp/$name.zip\" | sha256sum -c"
+  fi
   execute "unzip -o /tmp/$name.zip -d /tmp"
   execute_su "install /tmp/$extracted_dir/$name /usr/local/bin/$name"
 }
@@ -89,7 +97,11 @@ install_executable_file_from_url () {
 
   log_info "installing an executable file from URL: $name"
   execute "curl -L $url -o /tmp/$name"
-  execute "echo \"$sha256_checksum  /tmp/$name\" | sha256sum -c"
+  if is_macos; then
+    execute "echo \"$sha256_checksum  /tmp/$name\" | shasum -a 256 -c"
+  else
+    execute "echo \"$sha256_checksum  /tmp/$name\" | sha256sum -c"
+  fi
   execute_su "install /tmp/$name /usr/local/bin/$name"
 }
 
@@ -102,7 +114,11 @@ install_file_from_url () {
 
   log_info "installing a file from URL: $destination_path"
   execute "curl -L $url -o /tmp/$(basename "$destination_path")"
-  execute "echo \"$sha256_checksum  /tmp/$(basename "$destination_path")\" | sha256sum -c"
+  if is_macos; then
+    execute "echo \"$sha256_checksum  /tmp/$(basename "$destination_path")\" | shasum -a 256 -c"
+  else
+    execute "echo \"$sha256_checksum  /tmp/$(basename "$destination_path")\" | sha256sum -c"
+  fi
   execute "cp /tmp/$(basename "$destination_path") $destination_path"
 }
 
