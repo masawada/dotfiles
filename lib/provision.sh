@@ -70,7 +70,20 @@ load_recipe "shell"
 load_recipe "vim"
 load_recipe "tmux"
 
-# tools
+# tools (cross-platform)
+load_recipe "ghq"
+load_recipe "peco"
+load_recipe "docker"
+load_recipe "tree"
+load_recipe "whois"
+load_recipe "envchain"
+load_recipe "mariadb"
+load_recipe "redis"
+load_recipe "imagemagick"
+load_recipe "ansible"
+load_recipe "percona-toolkit"
+
+# tools (Linux-only)
 load_recipe "ntp"
 load_recipe "dhclient"
 load_recipe "netctl"
@@ -78,19 +91,8 @@ load_recipe "inetutils"
 load_recipe "dnsmasq"
 load_recipe "dnsutils"
 load_recipe "lsof"
-load_recipe "ghq"
-load_recipe "peco"
-load_recipe "docker"
-load_recipe "tree"
 load_recipe "clipboard"
-load_recipe "percona-toolkit"
-load_recipe "whois"
 load_recipe "gnome-keyring"
-load_recipe "envchain"
-load_recipe "mariadb"
-load_recipe "redis"
-load_recipe "imagemagick"
-load_recipe "ansible"
 
 # langs
 load_recipe "perl"
@@ -98,13 +100,15 @@ load_recipe "ruby"
 load_recipe "node"
 load_recipe "go"
 
-# desktop environments
+# desktop environments (Linux-only)
 load_recipe "wayland"
 load_recipe "foot"
-load_recipe "skk"
 load_recipe "pulseaudio"
-load_recipe "fonts"
 load_recipe "dunst"
+
+# desktop environments (cross-platform)
+load_recipe "skk"
+load_recipe "fonts"
 
 # desktop applications
 load_recipe "google-chrome"
