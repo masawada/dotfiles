@@ -52,8 +52,8 @@ fi
 
 load_recipe "update"
 
-# load ssh-agent
-load_recipe "ssh-agent"
+# load ssh
+load_recipe "ssh"
 
 if pgrep ssh-agent > /dev/null; then
   ssh_agent_pid="$(pgrep ssh-agent)"
