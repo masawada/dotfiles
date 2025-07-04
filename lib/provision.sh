@@ -55,13 +55,14 @@ load_recipe "update"
 # load ssh
 load_recipe "ssh"
 
-if pgrep ssh-agent > /dev/null; then
-  ssh_agent_pid="$(pgrep ssh-agent)"
-  export SSH_AGENT_PID="$ssh_agent_pid"
+# Setup SSH agent environment for Linux
+if is_linux && pgrep ssh-agent > /dev/null; then
+  export SSH_AGENT_PID="$(pgrep ssh-agent)"
   export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 fi
 
-execute "ssh-add $HOME/.ssh/id_ed25519"
+# Add SSH key
+[ -f "$HOME/.ssh/id_ed25519" ] && execute "ssh-add $HOME/.ssh/id_ed25519"
 
 # basics
 load_recipe "git"

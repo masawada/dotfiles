@@ -15,8 +15,9 @@ else
   log_info "SSH config already exists. Skipping..."
 fi
 
-# Linux specific: setup ssh-agent with systemd
+# OS specific ssh-agent setup
 if is_linux; then
+  # Setup ssh-agent with systemd
   dotfile "config/systemd/user/ssh-agent.service"
   dotfile "pam-environment"
   
