@@ -26,9 +26,6 @@ load_recipe "ruby"
 load_recipe "node"
 load_recipe "go"
 
-# desktop environments (cross-platform)
-load_recipe "skk"
-load_recipe "fonts"
 
 # desktop applications
 load_recipe "google-chrome"
