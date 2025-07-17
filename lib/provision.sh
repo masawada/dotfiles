@@ -64,59 +64,15 @@ fi
 # Add SSH key
 [ -f "$HOME/.ssh/id_ed25519" ] && execute "ssh-add $HOME/.ssh/id_ed25519"
 
-# basics
-load_recipe "git"
-load_recipe "shell"
-load_recipe "vim"
-load_recipe "tmux"
+# Load common recipes
+source "$LIB_DIR/provision/common.sh"
 
-# tools (cross-platform)
-load_recipe "ghq"
-load_recipe "peco"
-load_recipe "docker"
-load_recipe "tree"
-load_recipe "whois"
-load_recipe "envchain"
-load_recipe "mariadb"
-load_recipe "redis"
-load_recipe "imagemagick"
-load_recipe "ansible"
-load_recipe "percona-toolkit"
-
-# tools (Linux-only)
-load_recipe "ntp"
-load_recipe "dhclient"
-load_recipe "netctl"
-load_recipe "inetutils"
-load_recipe "dnsmasq"
-load_recipe "dnsutils"
-load_recipe "lsof"
-load_recipe "clipboard"
-load_recipe "gnome-keyring"
-
-# langs
-load_recipe "perl"
-load_recipe "ruby"
-load_recipe "node"
-load_recipe "go"
-
-# desktop environments (Linux-only)
-load_recipe "wayland"
-load_recipe "foot"
-load_recipe "pulseaudio"
-load_recipe "dunst"
-
-# desktop environments (cross-platform)
-load_recipe "skk"
-load_recipe "fonts"
-
-# desktop applications
-load_recipe "google-chrome"
-load_recipe "firefox"
-load_recipe "slack"
-load_recipe "1password"
-load_recipe "vlc"
-load_recipe "libreoffice"
+# Load platform-specific recipes
+if is_macos; then
+  source "$LIB_DIR/provision/macos.sh"
+elif is_linux; then
+  source "$LIB_DIR/provision/linux.sh"
+fi
 
 ## restore sudo timeout for linux
 restore_sudo_timeout
