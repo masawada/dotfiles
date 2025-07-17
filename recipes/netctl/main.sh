@@ -1,6 +1,3 @@
-# This recipe is Linux-only
-is_linux || return
-
 package "netctl"
 package "ifplugd"
 

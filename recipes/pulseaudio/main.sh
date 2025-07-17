@@ -1,6 +1,3 @@
-# This recipe is Linux-only
-is_linux || return
-
 package "pulseaudio"
 package "pulseaudio-bluetooth"
 package "pulseaudio-equalizer"
