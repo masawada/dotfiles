@@ -13,7 +13,12 @@ set fileformats=unix,dos,mac
 
 "Use OS native clipboard"
 if has('clipboard')
-  set clipboard=unnamedplus
+  if has('unnamedplus')
+    set clipboard=unnamedplus
+  else
+    "for macOS"
+    set clipboard=unnamed
+  endif
 
   "Retain clipboard contents after exiting vim"
   if has('mac')
