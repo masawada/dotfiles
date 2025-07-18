@@ -3,7 +3,7 @@ let g:plugins_dir = expand($HOME.'/.vim/plugins')
 call plug#begin(g:plugins_dir)
 
 Plug 'SirVer/ultisnips'
-Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 Plug 'cohama/lexima.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
@@ -95,8 +95,8 @@ if s:is_installed('completor.vim')
   inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 endif
 
-if s:is_installed('vim-colors-solarized')
-  colorscheme solarized
+if s:is_installed('solarized8')
+  colorscheme solarized8
   set background=light
 
   if (has("termguicolors"))
@@ -104,7 +104,7 @@ if s:is_installed('vim-colors-solarized')
   endif
 endif
 
-if s:is_installed('vim-colors-solarized') && s:is_installed('lightline.vim')
+if s:is_installed('solarized8') && s:is_installed('lightline.vim')
   let g:lightline = {
     \ 'colorscheme': 'solarized',
     \ }
