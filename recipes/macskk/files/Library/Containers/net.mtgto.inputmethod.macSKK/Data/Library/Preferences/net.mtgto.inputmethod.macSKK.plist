@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ShowAnnotation</key>
+	<true/>
+	<key>CandidatesFontSize</key>
+	<integer>16</integer>
+	<key>DirectMode</key>
+	<false/>
+	<key>UserDictionaries</key>
+	<array>
+		<string>~/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Dictionaries/SKK-JISYO.jawiki</string>
+	</array>
+</dict>
+</plist>
