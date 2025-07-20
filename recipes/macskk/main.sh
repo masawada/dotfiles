@@ -2,6 +2,8 @@
 
 cask "mac-skk"
 
+home_file "Library/Containers/net.mtgto.inputmethod.macSKK/Data/Library/Preferences/net.mtgto.inputmethod.macSKK.plist"
+
 create_directory "$HOME/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Dictionaries"
 
 install_file_from_url \
