@@ -3,3 +3,4 @@
 
 load_recipe "macskk"
 load_recipe "sequel-ace"
+load_recipe "chatgpt"
