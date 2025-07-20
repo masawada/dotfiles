@@ -22,7 +22,7 @@ package () {
   fi
 }
 
-mas () {
+mac_app_store () {
   app_id="$1"
   app_name="${2:-$app_id}"
 
