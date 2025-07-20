@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # macOS-specific recipes
 
+load_recipe "macos-defaults"
 load_recipe "macskk"
 load_recipe "sequel-ace"
 load_recipe "chatgpt"
