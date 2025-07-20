@@ -186,6 +186,17 @@ system_file () {
   execute_su "cp $source_path $destination_path"
 }
 
+# copy $RECIPE_DIR/files/$1 to $HOME/$1
+home_file () {
+  source_path="$RECIPE_DIR/files/$1"
+  destination_path="$HOME/$1"
+
+  log_info "installing a file: $destination_path"
+
+  create_directory "$(dirname "$destination_path")"
+  execute "cp $source_path $destination_path"
+}
+
 # enable service with systemd if not enabled
 enable_systemd_service () {
   log_info "enabling a systemd service: $1"
