@@ -9,7 +9,7 @@
     precomposeunicode = true
 
 [color]
-  ui = auto
+    ui = auto
 
 [alias]
     co = checkout
@@ -34,4 +34,4 @@
     user = masawada
 
 [init]
-	defaultBranch = main
+	  defaultBranch = main
