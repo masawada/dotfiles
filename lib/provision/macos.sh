@@ -2,3 +2,4 @@
 # macOS-specific recipes
 
 load_recipe "macskk"
+load_recipe "sequel-ace"
