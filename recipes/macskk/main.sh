@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cask "mac-skk"
+cask "macskk"
 
 home_file "Library/Containers/net.mtgto.inputmethod.macSKK/Data/Library/Preferences/net.mtgto.inputmethod.macSKK.plist"
 
