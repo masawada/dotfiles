@@ -1,4 +1,8 @@
-package 'gvim'
+if is_macos; then
+  package 'vim'
+elif is_linux; then
+  package 'gvim'
+fi
 
 dotfile 'vimrc'
 dotfile 'vim'

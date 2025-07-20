@@ -5,6 +5,8 @@
 # - log_warn
 # - log_crit
 # - log_debug
+# - is_macos
+# - is_linux
 
 execute () {
   cmd="$1"
@@ -46,4 +48,12 @@ log_debug () {
   if [ "$DEBUG" == 1 ]; then
     echo "[DEBUG] $message"
   fi
+}
+
+is_macos() {
+  [[ "$OSTYPE" == darwin* ]]
+}
+
+is_linux() {
+  [[ "$OSTYPE" == linux* ]]
 }

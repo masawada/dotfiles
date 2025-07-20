@@ -37,83 +37,42 @@ else
   log_info "Running in dry-run mode"
 fi
 
-## reset sudo timeout
-sudo -k
-if [ "$RUN" == 1 ]; then
-  sudo -v
-fi
-
-## extend sudo timeout
+## extend sudo timeout for linux
 extend_sudo_timeout
 
 ## load recipes
 # env RECIPE_DIR is defined in load_recipe function
 
-load_recipe "yay"
+# OS specific package managers
+if is_macos; then
+  load_recipe "homebrew"
+elif is_linux; then
+  load_recipe "yay"
+fi
+
 load_recipe "update"
 
-# load ssh-agent
-load_recipe "ssh-agent"
+# load ssh
+load_recipe "ssh"
 
-if pgrep ssh-agent > /dev/null; then
-  ssh_agent_pid="$(pgrep ssh-agent)"
-  export SSH_AGENT_PID="$ssh_agent_pid"
+# Setup SSH agent environment for Linux
+if is_linux && pgrep ssh-agent > /dev/null; then
+  export SSH_AGENT_PID="$(pgrep ssh-agent)"
   export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 fi
 
-execute "ssh-add $HOME/.ssh/id_ed25519"
+# Add SSH key
+[ -f "$HOME/.ssh/id_ed25519" ] && execute "ssh-add $HOME/.ssh/id_ed25519"
 
-# basics
-load_recipe "git"
-load_recipe "shell"
-load_recipe "vim"
-load_recipe "tmux"
+# Load common recipes
+source "$LIB_DIR/provision/common.sh"
 
-# tools
-load_recipe "ntp"
-load_recipe "dhclient"
-load_recipe "netctl"
-load_recipe "inetutils"
-load_recipe "dnsmasq"
-load_recipe "dnsutils"
-load_recipe "lsof"
-load_recipe "ghq"
-load_recipe "peco"
-load_recipe "docker"
-load_recipe "tree"
-load_recipe "clipboard"
-load_recipe "percona-toolkit"
-load_recipe "whois"
-load_recipe "gnome-keyring"
-load_recipe "envchain"
-load_recipe "mariadb"
-load_recipe "redis"
-load_recipe "imagemagick"
-load_recipe "ansible"
+# Load platform-specific recipes
+if is_macos; then
+  source "$LIB_DIR/provision/macos.sh"
+elif is_linux; then
+  source "$LIB_DIR/provision/linux.sh"
+fi
 
-# langs
-load_recipe "perl"
-load_recipe "ruby"
-load_recipe "node"
-load_recipe "go"
-
-# desktop environments
-load_recipe "wayland"
-load_recipe "foot"
-load_recipe "skk"
-load_recipe "pulseaudio"
-load_recipe "fonts"
-load_recipe "dunst"
-
-# desktop applications
-load_recipe "google-chrome"
-load_recipe "firefox"
-load_recipe "slack"
-load_recipe "1password"
-load_recipe "vlc"
-load_recipe "obs-studio"
-load_recipe "audacity"
-load_recipe "libreoffice"
-
-## restore sudo timeout
+## restore sudo timeout for linux
 restore_sudo_timeout

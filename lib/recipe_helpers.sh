@@ -3,15 +3,50 @@ package () {
 
   log_info "installing a package: $package_name"
 
-  if ! pacman -Q "$package_name" &>/dev/null; then
-    execute_su "pacman -S --noconfirm $package_name"
+  if is_macos; then
+    # macOS: use Homebrew
+    if ! brew list "$package_name" &>/dev/null; then
+      execute "brew install $package_name"
+    else
+      log_info "$package_name is already installed. Skipping..."
+    fi
+  elif is_linux; then
+    # Linux: use pacman
+    if ! pacman -Q "$package_name" &>/dev/null; then
+      execute_su "pacman -S --noconfirm $package_name"
+    else
+      log_info "$package_name is already installed. Skipping..."
+    fi
   else
-    log_info "$package_name is already installed. Skipping..."
+    log_warn "Unsupported OS. Cannot install package: $package_name"
+  fi
+}
+
+mac_app_store () {
+  app_id="$1"
+  app_name="${2:-$app_id}"
+
+  if is_linux; then
+    log_warn "Mac App Store is not available on Linux. Skipping: $app_name"
+    return 0
+  fi
+
+  log_info "installing Mac App Store app: $app_name (ID: $app_id)"
+
+  if ! mas list | grep -q "^$app_id"; then
+    execute "mas install $app_id"
+  else
+    log_info "$app_name is already installed. Skipping..."
   fi
 }
 
 aur () {
   package_name="$1"
+
+  if is_macos; then
+    log_warn "AUR is not available on macOS. Skipping: $package_name"
+    return 0
+  fi
 
   log_info "installing a package from AUR: $package_name"
 
@@ -19,6 +54,23 @@ aur () {
     execute "yay -S --noconfirm --provides=no $package_name"
   else
     log_info "$package_name is already installed. Skipping..."
+  fi
+}
+
+cask () {
+  cask_name="$1"
+
+  if is_linux; then
+    log_warn "Homebrew Cask is not available on Linux. Skipping: $cask_name"
+    return 0
+  fi
+
+  log_info "installing a cask: $cask_name"
+
+  if ! brew list --cask "$cask_name" &>/dev/null; then
+    execute "brew install --cask $cask_name"
+  else
+    log_info "$cask_name is already installed. Skipping..."
   fi
 }
 
@@ -30,7 +82,11 @@ install_binary_archived_with_tarball () {
 
   log_info "installing a binary archived with tarball: $name"
   execute "curl -L $url -o /tmp/$name.tar.gz"
-  execute "echo \"$sha256_checksum  /tmp/$name.tar.gz\" | sha256sum -c"
+  if is_macos; then
+    execute "echo \"$sha256_checksum  /tmp/$name.tar.gz\" | shasum -a 256 -c"
+  else
+    execute "echo \"$sha256_checksum  /tmp/$name.tar.gz\" | sha256sum -c"
+  fi
   execute "tar --overwrite -xzf /tmp/$name.tar.gz -C /tmp"
   execute_su "install /tmp/$extracted_dir/$name /usr/local/bin/$name"
 }
@@ -43,7 +99,11 @@ install_binary_archived_with_zip () {
 
   log_info "installing a binary archived with zip: $name"
   execute "curl -L $url -o /tmp/$name.zip"
-  execute "echo \"$sha256_checksum  /tmp/$name.zip\" | sha256sum -c"
+  if is_macos; then
+    execute "echo \"$sha256_checksum  /tmp/$name.zip\" | shasum -a 256 -c"
+  else
+    execute "echo \"$sha256_checksum  /tmp/$name.zip\" | sha256sum -c"
+  fi
   execute "unzip -o /tmp/$name.zip -d /tmp"
   execute_su "install /tmp/$extracted_dir/$name /usr/local/bin/$name"
 }
@@ -55,7 +115,11 @@ install_executable_file_from_url () {
 
   log_info "installing an executable file from URL: $name"
   execute "curl -L $url -o /tmp/$name"
-  execute "echo \"$sha256_checksum  /tmp/$name\" | sha256sum -c"
+  if is_macos; then
+    execute "echo \"$sha256_checksum  /tmp/$name\" | shasum -a 256 -c"
+  else
+    execute "echo \"$sha256_checksum  /tmp/$name\" | sha256sum -c"
+  fi
   execute_su "install /tmp/$name /usr/local/bin/$name"
 }
 
@@ -68,7 +132,11 @@ install_file_from_url () {
 
   log_info "installing a file from URL: $destination_path"
   execute "curl -L $url -o /tmp/$(basename "$destination_path")"
-  execute "echo \"$sha256_checksum  /tmp/$(basename "$destination_path")\" | sha256sum -c"
+  if is_macos; then
+    execute "echo \"$sha256_checksum  /tmp/$(basename "$destination_path")\" | shasum -a 256 -c"
+  else
+    execute "echo \"$sha256_checksum  /tmp/$(basename "$destination_path")\" | sha256sum -c"
+  fi
   execute "cp /tmp/$(basename "$destination_path") $destination_path"
 }
 
@@ -134,6 +202,17 @@ system_file () {
 
   create_directory_su "$(dirname "$destination_path")"
   execute_su "cp $source_path $destination_path"
+}
+
+# copy $RECIPE_DIR/files/$1 to $HOME/$1
+home_file () {
+  source_path="$RECIPE_DIR/files/$1"
+  destination_path="$HOME/$1"
+
+  log_info "installing a file: $destination_path"
+
+  create_directory "$(dirname "$destination_path")"
+  execute "cp $source_path $destination_path"
 }
 
 # enable service with systemd if not enabled

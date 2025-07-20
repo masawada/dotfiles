@@ -13,10 +13,19 @@ set fileformats=unix,dos,mac
 
 "Use OS native clipboard"
 if has('clipboard')
-  set clipboard=unnamedplus
+  if has('unnamedplus')
+    set clipboard=unnamedplus
+  else
+    "for macOS"
+    set clipboard=unnamed
+  endif
 
   "Retain clipboard contents after exiting vim"
-  autocmd VimLeave * call system("wl-copy --trim-newline", getreg('+'))
+  if has('mac')
+    autocmd VimLeave * call system("pbcopy", getreg('+'))
+  elseif executable('wl-copy')
+    autocmd VimLeave * call system("wl-copy --trim-newline", getreg('+'))
+  endif
 endif
 
 "Do not create backup file"

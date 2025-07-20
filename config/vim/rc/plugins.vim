@@ -3,11 +3,10 @@ let g:plugins_dir = expand($HOME.'/.vim/plugins')
 call plug#begin(g:plugins_dir)
 
 Plug 'SirVer/ultisnips'
-Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 Plug 'cohama/lexima.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
-Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'junegunn/vim-easy-align'
 Plug 'leafgarland/typescript-vim'
 Plug 'maralla/completor.vim',        { 'do': 'make js' }
@@ -18,7 +17,6 @@ Plug 'tyru/open-browser-github.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'w0rp/ale'
 Plug 'github/copilot.vim'
-Plug 'preservim/vim-indent-guides'
 
 Plug 'elzr/vim-json',                { 'for': 'json' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'js' }
@@ -28,6 +26,11 @@ Plug 'mattn/vim-goimports',          { 'for': 'go' }
 Plug 'motemen/hatena-vim',           { 'for': 'hatena' }
 Plug 'mxw/vim-jsx',                  { 'for': 'js' }
 Plug 'plasticboy/vim-markdown',      { 'for': 'markdown' }
+
+" OS/Environment specific plugins
+if !has('mac') && executable('wl-copy')
+  Plug 'jasonccox/vim-wayland-clipboard'
+endif
 
 call plug#end()
 
@@ -91,8 +94,8 @@ if s:is_installed('completor.vim')
   inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 endif
 
-if s:is_installed('vim-colors-solarized')
-  colorscheme solarized
+if s:is_installed('solarized8')
+  colorscheme solarized8
   set background=light
 
   if (has("termguicolors"))
@@ -100,7 +103,7 @@ if s:is_installed('vim-colors-solarized')
   endif
 endif
 
-if s:is_installed('vim-colors-solarized') && s:is_installed('lightline.vim')
+if s:is_installed('solarized8') && s:is_installed('lightline.vim')
   let g:lightline = {
     \ 'colorscheme': 'solarized',
     \ }
@@ -118,14 +121,4 @@ endif
 if s:is_installed('vim-easy-align')
   nmap ga <Plug>(EasyAlign)
   xmap ga <Plug>(EasyAlign)
-endif
-
-if s:is_installed('vim-indent-guides')
-  let g:indent_guides_enable_on_vim_startup = 1
-  let g:indent_guides_start_level = 1
-  let g:indent_guides_guide_size = 1
-
-  let g:indent_guides_auto_colors = 0
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=0
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0
 endif

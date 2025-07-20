@@ -5,3 +5,5 @@
 /config/vim/plugins/*
 !/config/vim/plugins/.keep
 /config/vim/.netrwhist
+/config/config/karabiner/*
+!/config/config/karabiner/karabiner.json
