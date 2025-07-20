@@ -22,6 +22,24 @@ package () {
   fi
 }
 
+mas () {
+  app_id="$1"
+  app_name="${2:-$app_id}"
+
+  if is_linux; then
+    log_warn "Mac App Store is not available on Linux. Skipping: $app_name"
+    return 0
+  fi
+
+  log_info "installing Mac App Store app: $app_name (ID: $app_id)"
+
+  if ! mas list | grep -q "^$app_id"; then
+    execute "mas install $app_id"
+  else
+    log_info "$app_name is already installed. Skipping..."
+  fi
+}
+
 aur () {
   package_name="$1"
 
