@@ -43,8 +43,6 @@ execute "defaults write com.apple.finder ShowSidebar -bool true" # Show Finder s
 execute "defaults write com.apple.finder ShowStatusBar -bool false" # Don't show Finder status bar
 execute "defaults write com.apple.finder FXPreferredViewStyle -string 'clmv'" # Use column view in Finder by default
 execute "defaults write com.apple.finder NewWindowTarget -string 'PfAF'" # New Finder window shows all files
-execute "defaults write com.apple.finder DesktopViewSettings -dict-add IconViewSettings -dict-add arrangeBy -string grid" # Arrange desktop icons by grid
-execute "defaults write com.apple.finder FK_StandardViewSettings -dict-add IconViewSettings -dict-add arrangeBy -string grid" # Arrange Finder window icons by grid
 
 # Language & Region Settings
 execute "defaults write NSGlobalDomain AppleLanguages -array 'ja-JP'" # Set primary language to Japanese
