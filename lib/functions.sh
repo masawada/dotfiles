@@ -30,13 +30,13 @@ load_recipe () {
 }
 
 extend_sudo_timeout () {
-  if is_linux; then
-    # reset sudo timeout
-    sudo -k
-    if [ "$RUN" == 1 ]; then
-      sudo -v
-    fi
+  # reset sudo timeout
+  sudo -k
+  if [ "$RUN" == 1 ]; then
+    sudo -v
+  fi
 
+  if is_linux; then
     log_info "extending sudo timeout"
     execute_su "echo \"Defaults timestamp_timeout=1800\" > /etc/sudoers.d/expand_timeout"
   fi
