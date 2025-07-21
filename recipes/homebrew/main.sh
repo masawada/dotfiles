@@ -5,7 +5,7 @@ fi
 
 if ! command -v brew &>/dev/null; then
   log_info "Installing Homebrew..."
-  command '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+  command /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   
   # Setup PATH for current session (Apple Silicon)
   if [[ -f "/opt/homebrew/bin/brew" ]]; then
