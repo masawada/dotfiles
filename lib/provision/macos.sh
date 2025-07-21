@@ -2,6 +2,7 @@
 # macOS-specific recipes
 
 load_recipe "mas-cli"
+load_recipe "coreutils"
 load_recipe "xcode"
 load_recipe "macskk"
 load_recipe "sequel-ace"
