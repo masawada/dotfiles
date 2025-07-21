@@ -4,8 +4,12 @@ if is_macos; then
   execute "brew upgrade"
   execute "brew cleanup"
   
-  log_info "Updating Mac App Store apps..."
-  execute "mas upgrade"
+  if type mas &>/dev/null; then
+    log_info "Updating Mac App Store apps..."
+    execute "mas upgrade"
+  else
+    log_info "mas not found, skipping Mac App Store updates..."
+  fi
 elif is_linux; then
   log_info "Updating system packages..."
   execute_su "pacman -Syu --noconfirm"
