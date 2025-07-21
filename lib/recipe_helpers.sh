@@ -120,6 +120,13 @@ install_executable_file_from_url () {
   else
     execute "echo \"$sha256_checksum  /tmp/$name\" | sha256sum -c"
   fi
+  
+  # Ensure /usr/local/bin exists before installing
+  if [ ! -d "/usr/local/bin" ]; then
+    log_info "Creating /usr/local/bin directory..."
+    execute_su "mkdir -p /usr/local/bin"
+  fi
+  
   execute_su "install /tmp/$name /usr/local/bin/$name"
 }
 
