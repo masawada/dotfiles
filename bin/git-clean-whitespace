@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Get all files that are staged or modified (excluding deleted files)
+# Also include untracked files
+files=$(git diff --name-only --diff-filter=AM; git diff --name-only --cached --diff-filter=AM; git ls-files --others --exclude-standard)
+
+# Remove duplicates
+files=$(echo "$files" | sort -u)
+
+# Exit if no files found
+if [ -z "$files" ]; then
+    echo "No staged or modified files found."
+    exit 0
+fi
+
+# Process each file
+for file in $files; do
+    # Skip if file doesn't exist (might have been deleted)
+    [ ! -f "$file" ] && continue
+
+    # Remove trailing whitespace from lines
+    # Use different sed syntax for macOS vs Linux
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        sed -i '' 's/[[:space:]]*$//' "$file"
+    else
+        sed -i 's/[[:space:]]*$//' "$file"
+    fi
+
+    # Add newline at end of file if missing
+    if [ -n "$(tail -c 1 "$file")" ]; then
+        echo >> "$file"
+    fi
+
+    echo "Formatted: $file"
+done
+
+echo "Formatting complete."
