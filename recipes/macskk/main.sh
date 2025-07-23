@@ -13,5 +13,5 @@ install_file_from_url \
 
 install_file_from_url \
   "https://raw.githubusercontent.com/tokuhirom/jawiki-kana-kanji-dict/master/SKK-JISYO.jawiki" \
-  "19a1ce7b71576ea55ee0d60da64bfa7139f8bf0f26139de865d421841b0c8d90" \
+  "92b60297f0a693c003c1a68ac3237d52878bd3cf8c8b45fca2851cfe19701424" \
   "$HOME/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Dictionaries/SKK-JISYO.jawiki"
