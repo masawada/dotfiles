@@ -26,3 +26,6 @@ dump.rdb
 vendor/bundle
 
 Berksfile.lock
+
+# workdir for Claude Code
+.ccw
