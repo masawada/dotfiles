@@ -2,6 +2,7 @@ if is_macos; then
   log_info "Updating Homebrew packages..."
   execute "brew update"
   execute "brew upgrade"
+  execute "brew upgrade --cask --greedy"
   execute "brew cleanup"
   
   if type mas &>/dev/null; then
