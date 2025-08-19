@@ -5,6 +5,22 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Print Screen to Command+Shift+Control+4",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "print_screen",
+                                    "modifiers": { "optional": ["caps_lock"] }
+                                },
+                                "to": {
+                                    "key_code": "4",
+                                    "modifiers": ["left_command", "left_shift", "left_control"]
+                                },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Mouse Button3 and Button4 to Back and Forward",
                         "manipulators": [
                             {
