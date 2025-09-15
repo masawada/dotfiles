@@ -1,6 +1,7 @@
 package_fonts=(
   "adobe-source-han-sans-otc-fonts"
   "adobe-source-han-serif-otc-fonts"
+  "adobe-source-code-pro-fonts"
   "ttf-hack"
   "ttf-inconsolata"
   "ttf-font-awesome"
