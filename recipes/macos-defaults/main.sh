@@ -16,6 +16,7 @@ execute "defaults write NSGlobalDomain KeyRepeat -int 1" # Set fast key repeat r
 execute "defaults write NSGlobalDomain InitialKeyRepeat -int 10" # Set short delay until key repeat (150ms)
 execute "defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool true" # Enable automatic capitalization
 execute "defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool true" # Enable automatic period substitution
+execute "defaults write -g ApplePressAndHoldEnabled -bool false" # Disable accent character popup when holding keys
 
 # Trackpad Settings
 execute "defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false" # Disable natural scrolling
