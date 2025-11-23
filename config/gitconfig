@@ -27,8 +27,8 @@
     ff = false
 
 [ghq]
-    root = ~/.ghq
     root = ~/.go/src
+    root = ~/.ghq
 
 [github]
     user = masawada
