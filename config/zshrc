@@ -34,7 +34,10 @@ PROMPT2="%{${fg[yellow]}%}%_> %{$reset_color%}"
 SPROMPT="%r is correct? [n,y,a,e]: "
 
 precmd () {
-  RPROMPT="%{${fg[yellow]}%}[$(pwd)]%{${reset_color}%}"
+  local dir=$(pwd)
+  dir=${dir/#$HOME\/.ghq\//ghq:}
+  dir=${dir/#$HOME\/.go\/src\//go:}
+  RPROMPT="%{${fg[yellow]}%}[${dir}]%{${reset_color}%}"
 }
 setopt transient_rprompt
 
