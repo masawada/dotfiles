@@ -56,6 +56,9 @@ whence plenv  > /dev/null 2>&1 && eval "$(plenv init - zsh)"
 whence rbenv  > /dev/null 2>&1 && eval "$(rbenv init - zsh)"
 whence nodenv > /dev/null 2>&1 && eval "$(nodenv init - zsh)"
 
+# load git wt completion
+whence git-wt > /dev/null 2>&1 && eval "$(git wt --init zsh)"
+
 # Default Permission
 umask 022
 

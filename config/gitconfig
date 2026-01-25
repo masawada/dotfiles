@@ -30,6 +30,9 @@
     root = ~/.go/src
     root = ~/.ghq
 
+[wt]
+    basedir = .wt
+
 [github]
     user = masawada
 
