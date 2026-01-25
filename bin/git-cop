@@ -1,3 +1,12 @@
 #!/bin/bash
 
-git checkout $(git branch | peco | sed -e 's/\* //g' | awk '{ print $1 }')
+# Check if inside a git worktree (.git is a file in worktrees, directory in main repo)
+TOPLEVEL=$(git rev-parse --show-toplevel 2>/dev/null)
+
+if [ -f "$TOPLEVEL/.git" ]; then
+  echo "Error: git-cop does not work inside a worktree. Use 'git wt' instead." >&2
+  exit 1
+fi
+
+# In main repo, filter out branches checked out in other worktrees (marked with +)
+git checkout $(git branch | grep -v '^+' | peco | sed -e 's/^* //' | awk '{ print $1 }')
