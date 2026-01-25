@@ -12,6 +12,7 @@ repos=(
   "github.com/mdempsky/gocode@latest"
   "golang.org/x/tools/cmd/godoc@latest"
   "golang.org/x/tools/cmd/goimports@latest"
+  "github.com/masawada/mdp/cmd/mdp@latest"
 )
 for repo in "${repos[@]}"; do
   execute "GOPATH=$gopath go install $repo"

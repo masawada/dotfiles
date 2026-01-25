@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{.Title}}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/solarized-light.min.css">
+  <style>
+    /* Solarized Light Theme */
+    :root {
+      --base03: #002b36;
+      --base02: #073642;
+      --base01: #586e75;
+      --base00: #657b83;
+      --base0: #839496;
+      --base1: #93a1a1;
+      --base2: #eee8d5;
+      --base3: #fdf6e3;
+      --yellow: #b58900;
+      --orange: #cb4b16;
+      --red: #dc322f;
+      --magenta: #d33682;
+      --violet: #6c71c4;
+      --blue: #268bd2;
+      --cyan: #2aa198;
+      --green: #859900;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--base00);
+      background-color: var(--base3);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Sidebar / Table of Contents */
+    .sidebar {
+      width: 250px;
+      flex-shrink: 0;
+      padding: 2rem 1rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      border-right: 1px solid var(--base2);
+    }
+
+    .toc-title {
+      font-size: 0.875em;
+      font-weight: 600;
+      color: var(--base01);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1em;
+    }
+
+    .toc {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .toc li {
+      margin: 0.25em 0;
+    }
+
+    .toc a {
+      display: block;
+      color: var(--base00);
+      text-decoration: none;
+      font-size: 0.875em;
+      padding: 0.25em 0;
+      border-left: 2px solid transparent;
+      padding-left: 0.5em;
+      transition: all 0.2s;
+    }
+
+    .toc a:hover {
+      color: var(--blue);
+      border-left-color: var(--blue);
+    }
+
+    .toc a.active {
+      color: var(--blue);
+      border-left-color: var(--blue);
+      font-weight: 500;
+    }
+
+    .toc-h2 { padding-left: 0.5em; }
+    .toc-h3 { padding-left: 1.5em; }
+    .toc-h4 { padding-left: 2.5em; }
+    .toc-h5 { padding-left: 3.5em; }
+    .toc-h6 { padding-left: 4.5em; }
+
+    /* Main Content */
+    .content {
+      flex: 1;
+      min-width: 0;
+      padding: 2rem;
+      max-width: 800px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--base01);
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 2em;
+      border-bottom: 1px solid var(--base2);
+      padding-bottom: 0.3em;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      border-bottom: 1px solid var(--base2);
+      padding-bottom: 0.3em;
+    }
+
+    h3 { font-size: 1.25em; }
+    h4 { font-size: 1em; }
+    h5 { font-size: 0.875em; }
+    h6 { font-size: 0.85em; color: var(--base0); }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.9em;
+      background-color: var(--base2);
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+
+    pre {
+      background-color: var(--base2);
+      padding: 1em;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+    }
+
+    /* Line numbers */
+    .hljs-ln {
+      border-collapse: collapse;
+    }
+
+    .hljs-ln td {
+      padding: 0;
+      border: none;
+    }
+
+    .hljs-ln-numbers {
+      user-select: none;
+      text-align: right;
+      color: var(--base1);
+      padding-right: 1em !important;
+      border-right: 1px solid var(--base2);
+      vertical-align: top;
+    }
+
+    .hljs-ln-code {
+      padding-left: 1em !important;
+    }
+
+    /* Mermaid */
+    .mermaid-container {
+      margin: 1em 0;
+      padding: 1em;
+      background-color: var(--base3);
+      border: 1px solid var(--base2);
+      border-radius: 6px;
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    blockquote {
+      margin: 1em 0;
+      padding: 0 1em;
+      color: var(--base0);
+      border-left: 4px solid var(--base2);
+    }
+
+    ul, ol {
+      margin: 1em 0;
+      padding-left: 2em;
+    }
+
+    li {
+      margin: 0.25em 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+    }
+
+    th, td {
+      border: 1px solid var(--base2);
+      padding: 0.5em 1em;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--base2);
+      font-weight: 600;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--base2);
+      margin: 2em 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid var(--base2);
+        padding: 1rem;
+      }
+
+      .content {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <div class="toc-title">Contents</div>
+      <ul class="toc" id="toc"></ul>
+    </nav>
+    <main class="content" id="content">
+      {{.Content}}
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mermaid initialization
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          background: '#fdf6e3',
+          primaryColor: '#eee8d5',
+          primaryTextColor: '#657b83',
+          primaryBorderColor: '#93a1a1',
+          lineColor: '#657b83',
+          secondaryColor: '#eee8d5',
+          tertiaryColor: '#fdf6e3'
+        }
+      });
+
+      // Find mermaid code blocks and render below them
+      const mermaidBlocks = document.querySelectorAll('code.language-mermaid');
+      mermaidBlocks.forEach(function(block, index) {
+        const code = block.textContent;
+        const pre = block.parentElement;
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        container.id = 'mermaid-' + index;
+
+        pre.insertAdjacentElement('afterend', container);
+
+        mermaid.render('mermaid-svg-' + index, code).then(function(result) {
+          container.innerHTML = result.svg;
+        });
+      });
+
+      // Syntax highlighting
+      hljs.highlightAll();
+      hljs.initLineNumbersOnLoad();
+
+      const content = document.getElementById('content');
+      const toc = document.getElementById('toc');
+      const headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+
+      headings.forEach(function(heading, index) {
+        // Add id to heading if not present
+        if (!heading.id) {
+          heading.id = 'heading-' + index;
+        }
+
+        // Create TOC item
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#' + heading.id;
+        a.textContent = heading.textContent;
+        a.className = 'toc-' + heading.tagName.toLowerCase();
+
+        li.appendChild(a);
+        toc.appendChild(li);
+      });
+
+      // Highlight current section on scroll
+      const tocLinks = toc.querySelectorAll('a');
+
+      function updateActiveLink() {
+        let current = '';
+
+        headings.forEach(function(heading) {
+          const rect = heading.getBoundingClientRect();
+          if (rect.top <= 100) {
+            current = heading.id;
+          }
+        });
+
+        tocLinks.forEach(function(link) {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveLink);
+      updateActiveLink();
+    });
+  </script>
+</body>
+</html>

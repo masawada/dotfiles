@@ -19,13 +19,13 @@ load_recipe "redis"
 load_recipe "imagemagick"
 load_recipe "ansible"
 load_recipe "percona-toolkit"
+load_recipe "mdp"
 
 # langs
 load_recipe "perl"
 load_recipe "ruby"
 load_recipe "node"
 load_recipe "go"
-
 
 # desktop applications
 load_recipe "google-chrome"
