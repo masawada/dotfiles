@@ -235,6 +235,26 @@
     th {
       background-color: var(--base2);
       font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+
+    th:hover {
+      background-color: #e0dbc8;
+    }
+
+    th .sort-indicator {
+      margin-left: 0.5em;
+      color: var(--base0);
+    }
+
+    th.sort-asc .sort-indicator::after {
+      content: '△';
+    }
+
+    th.sort-desc .sort-indicator::after {
+      content: '▽';
     }
 
     hr {
@@ -365,6 +385,67 @@
 
       window.addEventListener('scroll', updateActiveLink);
       updateActiveLink();
+
+      // Table sorting
+      const tables = document.querySelectorAll('table');
+      tables.forEach(function(table) {
+        const headers = table.querySelectorAll('th');
+        headers.forEach(function(header, colIndex) {
+          // Add sort indicator span
+          const indicator = document.createElement('span');
+          indicator.className = 'sort-indicator';
+          header.appendChild(indicator);
+
+          header.addEventListener('click', function() {
+            const tbody = table.querySelector('tbody') || table;
+            const rows = Array.from(tbody.querySelectorAll('tr')).filter(function(row) {
+              return row.querySelectorAll('td').length > 0;
+            });
+
+            // Determine sort direction
+            const isAsc = header.classList.contains('sort-asc');
+
+            // Remove sort classes from all headers in this table
+            headers.forEach(function(h) {
+              h.classList.remove('sort-asc', 'sort-desc');
+            });
+
+            // Set new sort direction
+            if (isAsc) {
+              header.classList.add('sort-desc');
+            } else {
+              header.classList.add('sort-asc');
+            }
+
+            const direction = header.classList.contains('sort-asc') ? 1 : -1;
+
+            // Sort rows
+            rows.sort(function(a, b) {
+              const aCell = a.querySelectorAll('td')[colIndex];
+              const bCell = b.querySelectorAll('td')[colIndex];
+              const aText = aCell ? aCell.textContent.trim() : '';
+              const bText = bCell ? bCell.textContent.trim() : '';
+
+              // Try numeric comparison first (handle commas and currency symbols)
+              const aNumStr = aText.replace(/[,，]/g, '').match(/-?[\d.]+/);
+              const bNumStr = bText.replace(/[,，]/g, '').match(/-?[\d.]+/);
+              const aNum = aNumStr ? parseFloat(aNumStr[0]) : NaN;
+              const bNum = bNumStr ? parseFloat(bNumStr[0]) : NaN;
+              if (!isNaN(aNum) && !isNaN(bNum)) {
+                return (aNum - bNum) * direction;
+              }
+
+              // Fall back to string comparison
+              return aText.localeCompare(bText, 'ja') * direction;
+            });
+
+            // Reorder rows in table
+            rows.forEach(function(row) {
+              tbody.appendChild(row);
+            });
+          });
+        });
+      });
     });
   </script>
 </body>
