@@ -74,6 +74,20 @@ cask () {
   fi
 }
 
+install_script () {
+  cmd="$1"
+  install_cmd="$2"
+
+  log_info "installing $cmd"
+
+  if command -v "$cmd" &>/dev/null; then
+    log_info "$cmd is already installed. Skipping..."
+    return
+  fi
+
+  execute "$install_cmd"
+}
+
 install_binary_archived_with_tarball () {
   name="$1"
   url="$2"
