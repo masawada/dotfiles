@@ -60,7 +60,6 @@ execute "defaults write com.apple.Accessibility KeyRepeatInterval -float 0.03333
 execute "defaults write NSGlobalDomain com.apple.springing.enabled -bool true" # Enable spring loading for directories
 execute "defaults write NSGlobalDomain com.apple.springing.delay -float 0.5" # Set spring loading delay
 execute "defaults write NSGlobalDomain CGDisableCursorLocationMagnification -bool true" # Disable cursor magnification
-execute "defaults write com.apple.universalaccess mouseDriverCursorSize -float 3.0" # Set cursor size
 execute "defaults write NSGlobalDomain AppleScrollerPagingBehavior -bool true" # Jump to clicked position in scroll bar
 
 # Screenshot Settings
