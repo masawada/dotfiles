@@ -19,6 +19,7 @@ load_recipe "redis"
 load_recipe "imagemagick"
 load_recipe "ansible"
 load_recipe "percona-toolkit"
+load_recipe "claude-code"
 load_recipe "mdp"
 
 # langs
