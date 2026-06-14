@@ -29,3 +29,6 @@ Berksfile.lock
 
 # workdir for Claude Code
 .ccw
+
+# Local Claude Code settings
+**.claude/settings.local.json
