@@ -1,3 +1,5 @@
+dotfile "npmrc"
+
 nodenv_dir="$HOME/.nodenv"
 node_build_dir="$nodenv_dir/plugins/node-build"
 
