@@ -71,6 +71,9 @@ setopt nolistbeep
 # Load environment dependent configurations
 [ -f "${HOME}/.zsh/zshrc.$(uname)" ] && source "${HOME}/.zsh/zshrc.$(uname)"
 
+# Load local configurations
+[ -f "${HOME}/.zshrc.local" ] && source "${HOME}/.zshrc.local"
+
 # Functions
 function peco-select-history {
   local tac
