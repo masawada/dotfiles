@@ -18,3 +18,5 @@ repos=(
 for repo in "${repos[@]}"; do
   execute "GOPATH=$gopath go install $repo"
 done
+
+package "golangci-lint"
