@@ -55,6 +55,7 @@ setopt hist_no_store
 whence plenv  > /dev/null 2>&1 && eval "$(plenv init - zsh)"
 whence rbenv  > /dev/null 2>&1 && eval "$(rbenv init - zsh)"
 whence nodenv > /dev/null 2>&1 && eval "$(nodenv init - zsh)"
+whence mise   > /dev/null 2>&1 && eval "$(mise activate zsh)"
 
 # load eda completion
 whence eda > /dev/null 2>&1 && eval "$(eda init - zsh)"
