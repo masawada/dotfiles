@@ -27,6 +27,7 @@ load_recipe "perl"
 load_recipe "ruby"
 load_recipe "node"
 load_recipe "go"
+load_recipe "mise"
 
 # desktop applications
 load_recipe "google-chrome"
